@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+    
+  <head>
+    {% block head %}
+    <!-- Required meta tags -->
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   
+    <link rel="shortcut icon" href="./static/icons8-wheat-16-2.png">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/journal/bootstrap.min.css" crossorigin="anonymous">
+    
+     <!--
+    <link rel="stylesheet"  href="../static/css/bread.css">
+    -->
+
+    {% endblock %}
+  </head>
+    
+  <body>
+    {% include 'navigation.html' %}
+
+    <main role="main">
+         
+      {% import "bootstrap/wtf.html" as wtf %}
+      {% from 'bootstrap/utils.html' import render_messages %} 
+
+      {% block content %}
+        <div class="container pt-4">
+ 
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          
+        </div> 
+        <div class="container">
+          {% block app_content %}{% endblock %}
+        </div>
+      {% endblock %}
+
+    </main>    
+
+   
+    <footer class="page-footer font-small pt-4">
+      <div class="footer-copyright text-center py-3">© 2020 Copyright: F. Espinoza       
+      </div>
+      <p class="text-muted text-center">App icons from <a href="https://icons8.com/">icons8</a>
+      </p>  
+    </footer>
+ 
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+    </script>
+
+    <script>
+      $(document).ready(function() {
+
+        const $valueSpan = $('.valueSpan2');
+        const $value = $('#customRange11');
+        $valueSpan.html($value.val());
+        $value.on('input change', () => {
+
+         $valueSpan.html($value.val());
+        });
+      });
+    </script>
+
+    <script>
+      $(document).ready(function() {
+
+        const $valueSpan = $('.valueSpan3');
+        const $value = $('#customRange12');
+        $valueSpan.html($value.val());
+        $value.on('input change', () => {
+
+        $valueSpan.html($value.val());
+        });
+      });
+    </script>
+    <!-- You will need to enter your own Tiny key here -->
+    <script src="https://cdn.tiny.cloud/1/YOURAPIKEY/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+
+    <script>
+      tinymce.init({
+      selector: 'textarea#editor',
+      height: 500,
+      menubar: false,
+      plugins: [
+        'advlist autolink lists link image charmap print preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table paste code help wordcount'
+      ],
+      toolbar: 'undo redo | formatselect | ' +
+      'bold italic backcolor | link | alignleft aligncenter ' +
+      'alignright alignjustify | bullist numlist outdent indent | ' +
+      'removeformat | help',
+      content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+    });
+    </script>
+
+    <script>
+    // Prevent Bootstrap dialog from blocking focusin
+    $(document).on('focusin', function(e) {
+      if ($(e.target).closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
+        e.stopImmediatePropagation();
+      }
+    });
+    </script>
+
+    <script>
+      function myFunction() {
+    window.print();
+    }
+    </script>
+  
+  </body> 
+
+</html>

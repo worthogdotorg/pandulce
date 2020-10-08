@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+
+{% block app_content %}
+
+    <div class="formwrapper"> 
+        <form method="POST" action="" 
+            <div class="container">
+                
+                <div class="row mt-5">
+                    <div class="col">
+                        <div class="card mt-1 border-0">
+                            <div class="card-body">
+                                <h1>Sourdough Starter Discard Recipe Calculator</h1>  
+                                <h2 class="text-muted">Adjusted Recipe</h2>
+                                <p>This shows your <strong>Adjusted Recipe</strong> flour and water amounts, and the amounts of flour and water in the starter.  
+                                <p>If you would like a little more or less sourdough, change the discard percentage and recalculate by clicking <strong>Bake Again</strong>.</p>
+                            </div>
+                        </div>
+                    </div>  
+                </div> 
+ 
+                <div class="row">
+                    <div class="col-md-4 mt-1">
+                        <div class="card">
+                            <h3 class="card-header">Adjusted Recipe</h3>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item font-weight-bold"> {{ recipe_name }} </li>
+                                    <li class="list-group-item text-primary font-weight-bold">Starter weight: {{ levain_qty }} {{ levain_units }} ({{ old_levain_pct }}% of dough weight)
+                                    <p class="text-muted text-right">Flour in starter: {{ levain_flour }} {{ levain_units }}</p>
+                                    <p class="text-muted text-right">Water in starter: {{ levain_water }} {{ levain_units }}</p>
+                                    <p class="text-muted text-right">Sourdough hydration:  {{ levain_hyd }}% </p></li>
+                                    <li class="list-group-item font-weight-bold"><img src="https://img.icons8.com/android/24/000000/wheat.png"/> New flour weight: {{ new_flour_qty }} {{ levain_units }}</li>
+                                    <li class="list-group-item font-weight-bold"><img src="https://img.icons8.com/android/24/000000/water.png"/> New water weight: {{ new_water_qty }} {{ levain_units }}</li>
+                                    <li class="list-group-item font-weight-bold"><img src="https://img.icons8.com/fluent-systems-filled/24/000000/milk-bottle.png"/> Milk weight: {{ new_dairy_qty }} {{ levain_units }}</li>
+                                    <li  class="list-group-item"> 
+                                        <div class="form-group d-flex">
+                                            <div class="w-100">
+                                                <label for="customRange12" class="col-form-label"><a href="#" data-toggle="tooltip" title="Here you can change the percentage of flour + water weight to be replaced by discard.">Change discard amount (%)</a></label>
+                                                <input type="range" class="custom-range" id="customRange12" min="0" max="50" name="levain_pct">
+                                                <span class="font-weight-normal text-normal valueSpan3"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item"><input type="submit" class="btn btn-primary btn-lg btn-block" value="Bake Again"></li>
+                                </ul>
+                            </div>  
+                        </div> 
+                    </div> 
+
+                    <div class="col-md-8 mt-1">
+                        <div class="card">
+                            <h3 class="card-header">Recipe Notes</h3>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <textarea id="editor" class="form-control" name="recipe_notes"> {{ recipe_notes }} </textarea>
+                                </div>
+
+                                <script>
+                                    tinymce.init({
+                                      selector: 'textarea#tiny'
+                                    });
+                                </script>                               
+                            </div>
+                        </div>
+                        <div class="container mt-4">
+                            <center>
+                                <button class="btn btn-secondary hidden-print" onclick="myFunction()"><img src="https://img.icons8.com/fluent-systems-filled/24/000000/print.png"/></span> Print</button>
+                            </center>   
+                        </div>
+                    </div>
+                </div>            
+        </form>    
+    </div>
+{% endblock %}

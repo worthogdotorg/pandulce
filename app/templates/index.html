@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block app_content %}
+
+    <div class="formwrapper">
+                
+        <form method="post" action="" 
+            
+            <div class="container">
+                
+                <div class="row mt-5"></div>  
+                <div class="row mt-5">  
+                    <div class="col">
+                        <div class="card mt-1 border-0">
+                            <div class="card-body">
+                                <h1>Sourdough Starter Discard Recipe Calculator</h1>
+                                <h2 class="text-muted text-">Original Recipe & Levain</h2>
+                                <p>You Can Add Sourdough Starter Discard to Almost Anything — <a href="https://www.thekitchn.com/using-sourdough-starter-discard-23025996#comments-23025996" target="_blank">"It Just Requires a Little Math".</a>  When replacing flour and water with sourdough discard it's important to maintain <a href="https://www.theperfectloaf.com/reference/introduction-to-bakers-percentages/">bakers percentages.</a> This simple calculator will compute the amount of flour and water needed after the addition of your sourdough discard.</p>
+                                <p>If I can't maintain baker's percentages, I will limit the amount of discard and flash a message indicating so.  In any case, relax, don't worry, and have another slice of buttered bread.</p>
+                            </div>
+                        </div>
+                    </div>  
+                </div>   
+       
+                <div class="row">
+                    <div class="col-md-4">    
+                        <div class="card mt-1">
+                            <h3 class="card-header">Original Recipe</h3>
+                                <div class="card-body font-weight-normal">
+                                    <ul class="list-group list-group-flush">
+                                        <li  class="list-group-item">{{ wtf.form_field(form.recipe_name) }}</li>    
+                                        <li  class="list-group-item">{{ wtf.form_field(form.levain_units) }}
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" class="custom-control-input" name="levain_units" id="weightunitsg" value="gm" checked>
+                                                <label class="custom-control-label" for="weightunitsg">Grams</label>
+                                            </div>
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" class="custom-control-input" name="levain_units" id="weightunitso" value="oz">
+                                                <label class="custom-control-label" for="weightunitso">Ounces</label>
+                                            </div>  
+                                        </li>                                  
+
+                                        <li  class="list-group-item">
+                                            <div class="form-group">
+                                                <label for="flour" class="col-form-label"><img src="https://img.icons8.com/android/24/000000/wheat.png"/> Flour weight</label>
+                                                <input type="number" class="form-control" id="flour" name="flour_qty" value=1000>  
+                                            </div>
+                                        </li>
+                                        <li  class="list-group-item">
+                                            <div class="form-group">
+                                                <label for="water" class="col-form-label"><img src="https://img.icons8.com/android/24/000000/water.png"/> Water weight</label>
+                                                <input type="number" class="form-control" id="water" name="water_qty" value=500>  
+                                            </div>
+                                        </li>
+                                        <li  class="list-group-item"> 
+                                            <div class="form-group">
+                                                <label for="dairy" class="col-form-label"><img src="https://img.icons8.com/fluent-systems-filled/24/000000/milk-bottle.png"/> Milk weight</label>
+                                                <input type="number" class="form-control" id="dairy" name="dairy_qty" value=0>  
+                                            </div>
+                                        </li>
+                                        <!--
+                                        <li  class="list-group-item">{{ wtf.form_field(form.recipe_notes) }}</li> 
+                                        -->
+                                    </ul>
+                            </div>
+                        </div>    
+                    </div>
+                
+                    <div class="col-md-4">
+                        <div class="card mt-1">
+                            <h3 class="card-header">Sourdough Discard</h3>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush font-weight-normal">
+                                    <li  class="list-group-item"> 
+                                        <div class="form-group d-flex">
+                                            <div class="w-100">
+                                                <label for="customRange11" class="col-form-label"><a href="#" data-toggle="tooltip" title="Enter the starter hydration percentage as a whole number. 100% is equal parts flour and water in the feeding. If you are not sure, click on Help.">Sourdough hydration (%)</a></label>
+                                                <input type="range" class="custom-range" id="customRange11" min="50" max="150" value="100" step="5" name="levain_hyd">
+                                                <span class="font-weight-normal text-normal valueSpan2"></span>
+                                            </div>
+                                         </div>
+                                    </li>
+                                                                
+                                    <li  class="list-group-item"> 
+                                        <div class="form-group d-flex">
+                                            <div class="w-100">
+                                                
+                                                <label for="customRange12" class="col-form-label"><a href="#" data-toggle="tooltip" title="Percentage of dough weight to be replaced by discard, default is 10%.">Discard amount (%)</a></label>
+                                                <input type="range" class="custom-range" id="customRange12" min="0" max="50" value="10" name="levain_pct">
+                                                <span class="font-weight-normal text-normal valueSpan3"></span>
+                                            </div>
+                                         </div>
+                                    </li>
+
+    
+                                    <li  class="list-group-item"><input type="submit" class="btn btn-primary btn-lg btn-block" value="Bake"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            
+            </div>
+        </form>
+         
+    </div>
+    
+
+{% endblock %}
+

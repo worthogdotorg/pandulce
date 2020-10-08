@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block app_content %}
+
+    <div class="container pt-4">
+        <h1 class="pt-5">Sourdough Starter Discard Recipe Calculator</h1> 
+        <h2>Help</h2> 
+        <h3 class="text-muted">Usage</h3> 
+        <p>When replacing flour and water in a recipe with sourdough discard, it's important to maintain bakers percentages or you may end up either baking a brick or cooking up a hard porridge.  This simple calculator will compute the amount of flour and water needed after the addition of your sourdough discard, and allows one to select the hydration of your sourdough. This article has a very simple explanation for bakers who are wondering about how to use discard in conventional recipes, <a href="https://www.thekitchn.com/using-sourdough-starter-discard-23025996#comments-23025996" target="_blank">"You Can Add Sourdough Starter Discard to Almost Anything — It Just Requires a Little Math"</a></p>
+        <p>Notes on the <b>Original Recipe</b> inputs:</p>
+        <ul>
+            <li>The flour, water and milk weights are pretty self explanatory.  If you're using a preferment or sponge, exclude the flour and water in your preferment from the calculations.</li>
+            <li>Simplicity was my goal with this calculator, so you'll note that I don't worry about different flour types (e.g. whole wheat, rye, APF).  I've found that a small amount of rye or whole wheat in your levain or sourdough has only subtle impacts on the flavor and texture, usually for the good!</li>
+        </ul>
+        <p>Notes on the <b>Sourdough Discard</b> inputs:</p>
+        <ul>
+            <li>If your discard or levain has equal parts flour and water, the <b>Sourdough hydration</b> value will be 100% (the default value).  If you're using some other ratio, then use the slider bar to adjust the hydration to the proper value (if known). If you're not sure, <a href="https://www.sourdough.co.uk/sourdough-hydration-calculator/">this site</a> has a clear explanation and both simple and advanced calculators to determine the hydration of your sourdough.</li> 
+            <li>The <b>Discard amount</b> value is the percentage of flour and water in your recipe to be replaced by sourdough discard.  I find that 10-25% works for most recipes, and I used slider bars in the Sourdough Discard column to limit the hydration and discard percentages to <em>reasonable levels.</em> You'll want a lighter hand (10%) with neutral tasting breads like tortillas, but you can probably go a little crazy for stronger tasting loaves like date nut loaf!  But the calculator doesn't allow you to go so crazy as to replace greater than 50% of your dough with sourdough.</li> 
+        </ul>
+        <p>Notes on the <b>Adjust Recipe</b> screen:</p>
+        <ul>
+            <li>The Starter weight is the amount of starter that you will add to the <em>wet</em> ingredients.</li>
+            <li>The "New" flour and water weights show the amount of flour and water you will add with your dry ingredients.  These replace the amounts from your original recipe.</li>
+            <li>The "flour/water in starter" weights simply show how much flour and water from the original recipe are replaced by sourdough discard.  Combine the new flour/water weights with the flour and water in the starter and you see that bakers percentages are maintained!</li>
+            <li>Note that the milk weight never changes in the calculator. That's by design. Liquid milk and buttermilk are 80-90% water, so if you want to add more sourdough discard and you've already replaced all the water in the recipe with discard, one option is to use dry milk or buttermilk powder, decrease the figure in the milk field (decreasing the hydration), and increase the percentage of discard.  Don't worry about the moisture content of your milk powder, it won't make a lick of difference in your recipe.  Just remember to relax, don't worry, and have another slice of buttered bread.</li>
+        </ul>
+        <p>You'll find some sample recipes in the navigation bar.  I've used levain with 25% rye, 25% whole wheat, and 50% APF in both the tortilla and date nut loaf recipes with the given hydration and discard percentages, and they were pretty darned tasty and lovely.  I did not bake the whole wheat loaf in the sample recipe, but I have used similar recipes and the end product was delicious with a gorgeous crumb.  
+        </p>    
+        <p>If I can't maintain baker's percentages, I will limit the amount of discard and flash a message indicating so.  That means that the combination of sourdough hydration and the percentage of dough to be replaced by discard will not give values that make any sense.  And the last thing I want is to be accused of allowing you to bake a brick or something resembling hot quicksand!  If your recipe is really out of whack then I'll simply take you back to the main page and force you to start over.  In any case, relax, don't worry, and have another slice of buttered bread.</p>
+        <p>Questions?  Comments?  Need help?  Contact me at <a href="mailto:help@pandulce.info">help@pandulce.info</a> or lick on the GitHub link in the navigation bar and open an issue.</p>
+                 
+    </div>
+{% endblock %}
