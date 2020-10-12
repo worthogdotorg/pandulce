@@ -15,4 +15,4 @@ sympy = "*"
 flask-bootstrap = "*"
 
 [requires]
-python_version = "python 3"
+python_version = "3"

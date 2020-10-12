@@ -57,7 +57,7 @@ def index():
     
     #if form.validate_on_submit():
     if request.method == "POST":
-        flash("Test from index.")       
+        #flash("Test from index.")       
         session['recipe_name'] = request.form["recipe_name"]
         if request.form["levain_units"]=="gm":
             session['levain_units'] = "grams"
