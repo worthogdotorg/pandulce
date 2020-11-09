@@ -14,7 +14,6 @@
                         <div class="card mt-1 border-0">
                             <div class="card-body">
                                 <h1>Sourdough Starter Discard Recipe Calculator</h1>
-                                <h2 class="text-muted text-">Original Recipe & Levain</h2>
                                 <p>You Can Add Sourdough Starter Discard to Almost Anything — <a href="https://www.thekitchn.com/using-sourdough-starter-discard-23025996#comments-23025996" target="_blank">"It Just Requires a Little Math".</a>  When replacing flour and water with sourdough discard it's important to maintain <a href="https://www.theperfectloaf.com/reference/introduction-to-bakers-percentages/">bakers percentages.</a> This simple calculator will compute the amount of flour and water needed after the addition of your sourdough discard.</p>
                                 <p>If I can't maintain baker's percentages, I will limit the amount of discard and flash a message indicating so.  In any case, relax, don't worry, and have another slice of buttered bread.</p>
                             </div>
@@ -58,9 +57,7 @@
                                                 <input type="number" class="form-control" id="dairy" name="dairy_qty" value=0>  
                                             </div>
                                         </li>
-                                        <!--
-                                        <li  class="list-group-item">{{ wtf.form_field(form.recipe_notes) }}</li> 
-                                        -->
+                                        
                                     </ul>
                             </div>
                         </div>    
@@ -74,7 +71,7 @@
                                     <li  class="list-group-item"> 
                                         <div class="form-group d-flex">
                                             <div class="w-100">
-                                                <label for="customRange11" class="col-form-label"><a href="#" data-toggle="tooltip" title="Enter the starter hydration percentage as a whole number. 100% is equal parts flour and water in the feeding. If you are not sure, click on Help.">Sourdough hydration (%)</a></label>
+                                                <label for="customRange11" class="col-form-label"><a href="#" data-toggle="tooltip" title="Enter the starter hydration percentage. 100% is equal parts flour and water in the feeding. If you are not sure, click on Help.">Sourdough hydration (%)</a></label>
                                                 <input type="range" class="custom-range" id="customRange11" min="50" max="150" value="100" step="5" name="levain_hyd">
                                                 <span class="font-weight-normal text-normal valueSpan2"></span>
                                             </div>

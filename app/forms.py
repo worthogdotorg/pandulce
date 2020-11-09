@@ -35,5 +35,17 @@ class recipesamples(FlaskForm):
     levain_pct = IntegerField('Levain percentage', validators=[NumberRange(0,100), DataRequired(message='Enter a number here to bake again!')])
     submit = SubmitField()
 
+class breadcalcinput(FlaskForm):
+    """Input recipe"""
+    levain_units_calc = RadioField('Weight units')
 
+    flour_qty_recipe = IntegerField('Flour weight', default=1000, validators=[DataRequired(), NumberRange(0,1000)])
+    water_qty_recipe = IntegerField('Water weight', default=500, validators=[DataRequired(), NumberRange(0,1000)])
+    levain_qty_recipe = IntegerField('Dairy weight', default=0, validators=[DataRequired(), NumberRange(0,1000)])
+
+    levain_hyd_recipe = IntegerField('Levain hydration (%)', default=100, validators=[NumberRange(50,150)])
+    levain_hyd_yours = IntegerField('Levain hydration (%)', default=100, validators=[NumberRange(50,150)])
+    
+    submit = SubmitField()
+    
 

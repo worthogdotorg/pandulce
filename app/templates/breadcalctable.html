@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+
+{% block app_content %}
+
+
+    <div class="container">
+        <div class="col">
+            <div class="card mt-1 border-0">
+                <div class="card-body">
+                    <h1>Bakers Percentages Calculator</h1>  
+                    <p>Calculate bakers percentages and adjusted recipe for levain of varying hydrations.
+                </div>
+            </div>
+        </div>  
+
+      
+        <div class="row">
+            <div class="col mt-1">
+                <div class="card">
+                    <h3 class="card-header">Original Recipe</h3>
+                    <div class="card-body">
+                        
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Ingredient</th>
+                                <th scope="col" class="text-right">Weight ({{ levain_units }}) </th>
+                                <th scope="col" class="text-right">Bakers Percentages</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row"><img src="https://img.icons8.com/android/24/000000/wheat.png"/> Flour</th>
+                                <td class="text-right"> {{ flour_total }}  </td>
+                                <td class="text-right">100%</td>
+                              </tr>  
+ 
+                              <tr>
+                                <th scope="row" class="text-muted text-center">Flour in Recipe</th>
+                                <td class="text-right">  {{  flour_qty_recipe }}  </td>
+                                <td class="text-right">  {{  flour_recipe_bakers_pct }}%</td>
+                              </tr>
+                                                           
+                              <tr>
+                                <th scope="row" class="text-muted text-center">Prefermented Flour</th>
+                                <td class="text-right">  {{  pff }}  </td>
+                                <td class="text-right">  {{  pff_bakers_pct }}%</td>
+                              </tr>
+                            
+                              <tr>
+                                <th scope="row"><img src="https://img.icons8.com/android/24/000000/water.png"/> Water</th>
+                                <td class="text-right">  {{ water_total }}  </td>
+                                <td class="text-right">  {{  water_bakers_pct }}%  </td>
+                              </tr>
+
+                              <tr>
+                                <th scope="row" class="text-muted text-center">Water in Recipe</th>
+                                <td class="text-right">  {{  water_qty_recipe }}  </td>
+                                <td class="text-right">  {{  water_recipe_bakers_pct }}%  </td>
+                              </tr>
+
+                              <tr>
+                                <th scope="row" class="text-muted text-center">Water in Levain</th>
+                                <td class="text-right">  {{  levain_water_recipe }}  </td>
+                                <td class="text-right">  {{  levain_water_bakers_pct }}%  </td>
+                              </tr>
+                              
+                              <tr>
+                                <th scope="row"><img src="https://img.icons8.com/material-sharp/24/000000/mason-jar.png"/> Levain ( {{ levain_hyd_recipe }}% hydration) </th>
+                                <td class="text-right">  {{  levain_qty_recipe }}  </td>
+                                <td class="text-right">  {{  levain_bakers_pct }}% </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        
+                    </div>  
+                </div> 
+            </div>    
+        </div>  
+    </div>  
+  
+
+      
+{% endblock %}
