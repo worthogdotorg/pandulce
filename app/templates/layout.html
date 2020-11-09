@@ -19,7 +19,7 @@
     {% endblock %}
   </head>
     
-  <body>
+  <body class="pt-5">
     {% include 'navigation.html' %}
 
     <main role="main">
@@ -42,7 +42,7 @@
           {% endwith %}
           
         </div> 
-        <div class="container">
+        <div class="container pt-5">
           {% block app_content %}{% endblock %}
         </div>
       {% endblock %}

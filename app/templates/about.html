@@ -2,18 +2,33 @@
 
 {% block app_content %}
     <div class="container pt-auto">            
-        <h1 class="pt-5">Sourdough Starter Discard Recipe Calculator</h1> 
+        <a href="#calcs">Calculators</a>
+        <br><a href="#discard">Sourdough Discard Calculator</a>
+        <br><a href="#roadmap">Roadmap</a>
+        <br><a href="#acks">Acknowledgements</a>
+        <br><a href="#me">About Me</a>
+        
+        <h1 id="calcs" class="mt-5">Calculators</h1>
+        <h3>Bakers Percentage Calculator</h3> 
+        <p>This was inspired by three things:
+        <ul>
+        <li>The comments from the article <a href="https://www.theperfectloaf.com/reference/introduction-to-bakers-percentages/" target="_blank">Introduction to Baker’s Percentages</a> in the excellent <a href="https://www.theperfectloaf.com/" target="_blank">The Perfect Loaf website.</a>
+        </li>
+        <li>My own baking experience maintaining a 100% hydration starter but wanting to quickly convert recipes using varying hydration levels.  For example, I often bake breads from <a href="https://kensartisan.com/flour-water-salt-yeast" target ="_blank">FLOUR WATER SALT YEAST</a> book, but the author uses an 80% hydration starter but I maintain my starter at 100%.  Therefore, I have to convert the recipe in order to maintain dough hydration and prefermented flour quantities.
+        </li>
+        <li>The challenge of trying to get it right using a Python full stack program.
+        </li>
+        </p>
+        </ul>    
+        <h3>Sourdough Starter Discard Recipe Calculator</h3> 
         <p>Like many, I've been finding creative ways to use sourdough discard which is safe, edible and delicious. So when not baking boules, I find myself using discard in recipes that may not call for sourdough, like traditional whole wheat bread, date nut loaf and tortillas, ¡Ay caramba!</p>  
         <p>But when replacing flour and water with sourdough discard it's important to maintain <a href="https://www.theperfectloaf.com/reference/introduction-to-bakers-percentages/">bakers percentages</a>.  Otherwise you may end up baking a brick or something resembling a stiff, hot porridge.  This simple calculator will compute the amount of flour and water required to maintain the original recipe bakers percentages when replacing some portion of the dough with sourdough discard.</p>
+        <p>My primary objective with the calculator--beyond accuracy and a clean interface--is simplicity.  Two screens, that's it! For more information on how to use the calculator, give it a test ride and click Help in the navigation bar.</p>
         
-        <h2>Usage</h2> 
-        <p>My primary objective with the calculator--beyond accuracy and a clean interface--is simplicity.  Two screens, that's it!</p>              
-        <p>For more information on how to use the calculator, give it a test ride and click Help in the navigation bar.</p>
-        
-        <h2>Roadmap</h2>
-        Check out the <a href="https://github.com/worthogdotorg/bread/issues">GitHub repository Issues list</a> for application enhancements that I've thought of.  Can you think of anything that you'd like to see in the calculator?  If so, then add a new issue to the list or send me an email. 
+        <h2 id="roadmap">Roadmap</h2>
+        Check out the <a href="https://github.com/worthogdotorg/pandulce/issues">GitHub repository Issues list</a> for application enhancements that I've thought of.  Can you think of anything that you'd like to see in the calculator?  If so, then add a new issue to the list or send me an email. 
 
-        <h2>Acknowledgments</h2>
+        <h2 id="acks">Acknowledgments</h2>
         <p>There are bushels of good bread calculators for recipes, timings, and other bread related stuff. And then there are sites that exhibit a level of obsession about bread that I could really appreciate.  Here are three which inspired me:</p>
         <ul>
             <li><a href="https://www.sourdough.co.uk/sourdough-hydration-calculator/" target="_blank">The Sourdough School Calculator</a></li>
@@ -26,8 +41,8 @@
         <p>For this calculator, simplicity was paramount even if the algebra required was sometimes not so simple--at least for me!  Somewhat embarrassingly, I could not have figured out the math without the help of <a href="https://munchietamer.com/bread-math-sourdough-starter-and-dough-hydration/" target="_blank">this terrific site</a> which provided the needed formulas and helpful explanations.  Hey, it's been awhile since I've done high school algebra. </p>
         <p>Thank you. Gracias. Huzzahs!</p>
 
-        <h2>About Me</h2> 
-        <p>I'm a long time home baker and have been maintaining starters since long before the pandemic struck. I'm also a little geeky and have some time on my hands (and sometimes bits of freshly kneaded dough).  I'm sort of semi-retired, but looking to leverage my nascent programming skills and many years of enterprise data center experience into something interesting with an organization doing good things for all of us.</p>
+        <h2 id="me">About Me</h2> 
+        <p>I'm a long time home baker and have been maintaining starters since long before the pandemic struck. I'm also a little geeky and have some time on my hands (and sometimes bits of freshly kneaded dough).  I'm sort of semi-retired, but looking to leverage my nascent programming skills and many years of enterprise data center experience into something interesting with an organization doing good things.</p>
         <p>Contact information:</p>
         <ul>
             <li><a href="mailto:info@pandulce.info">info@pandulce.info</a></li>

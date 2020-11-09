@@ -3,14 +3,35 @@
 {% block app_content %}
 
     <div class="container pt-4">
-        <h1 class="pt-5">Sourdough Starter Discard Recipe Calculator</h1> 
-        <h2>Help</h2> 
+        <h1>Help</h1>
+        <a href="#bakerspct">Bakers Percentage Calculator</a>
+        <br><a href="#discard">Sourdough Discard Calculator</a>
+        <h2 id="bakerspct" class="pt-5">Bakers Percentage Calculator</h2> 
+        <p>Bakers percentages are an obsession amongst bakers, and necessarily so if we are trying to double or halve a recipe or--important for me--modifying a recipe that calls for a levain with a different hydration percentage from my own.  I maintain a starter at 100% hydration, but often encounter recipes calling for 80% hydration level levain.</p>
+        <p>When using a levain with a different hydration than that called for in the recipe, the most important thing is to maintain the amount of prefermented flour in the modified recipe.  But you also have to adjust the levain and water quantities so as not to change the dough hydration level.  This calculator should make that conversion a breeze.  </p>
         <h3 class="text-muted">Usage</h3> 
+        
+        <p>Notes on the <b>Bakers Percentages Levain Calculator</b> inputs:</p>
+        <ul>
+            <li>The flour, water and levain weights are pretty self explanatory.  You have the option of choosing your weight unit, grams or ounces, but I only use that to show the weight unit in bakers percentage table. That is, I don't convert from one to another weight unit (grams to ounces, ounces to grams).  </li>
+            <li>Simplicity was my goal with this calculator, so you'll note that I don't accommodate different flour types (e.g. whole wheat, rye, APF) or adjunct ingredients (e.g. nuts, dried fruits).</li>
+            <li>Use the slider bar to select the levain hydration percentage.  Note that it increments in units of 5.  Round up or down to select the hydration percentage closest to what's called for in the recipe.  That is, if the recipe calls for 66% hydration dough, select 65%. </li>
+        </ul>
+        <p>Notes on the <b>Bakers Percentages Table</b> screen:</p>
+        <ul>
+            <li>The Original Recipe card shows the total dough weight and dough hydration.  To calculate the dough hydration, I included the amount of flour and water in the starter.</li>
+            <li>The Flour and Water areas show <b>Prefermented Flour</b> and <b>Water in Levain</b> values.  Note that when you sum those two values, they will equal the quantity of starter used in the recipe.</li>
+            <li>The dough weight, dough hydration, flour and prefermented flour values will be maintained in both the original and adjusted recipes no matter what hydration levels are entered.  This is by design--they should not change when adjusting recipes for varying hydration levels.</li>
+        </ul>
+
+        <h2 id="discard" class="pt-5">Sourdough Starter Discard Recipe Calculator</h2> 
+        
         <p>When replacing flour and water in a recipe with sourdough discard, it's important to maintain bakers percentages or you may end up either baking a brick or cooking up a hard porridge.  This simple calculator will compute the amount of flour and water needed after the addition of your sourdough discard, and allows one to select the hydration of your sourdough. This article has a very simple explanation for bakers who are wondering about how to use discard in conventional recipes, <a href="https://www.thekitchn.com/using-sourdough-starter-discard-23025996#comments-23025996" target="_blank">"You Can Add Sourdough Starter Discard to Almost Anything — It Just Requires a Little Math"</a></p>
+        <h3 class="text-muted">Usage</h3> 
         <p>Notes on the <b>Original Recipe</b> inputs:</p>
         <ul>
             <li>The flour, water and milk weights are pretty self explanatory.  If you're using a preferment or sponge, exclude the flour and water in your preferment from the calculations.</li>
-            <li>Simplicity was my goal with this calculator, so you'll note that I don't worry about different flour types (e.g. whole wheat, rye, APF).  I've found that a small amount of rye or whole wheat in your levain or sourdough has only subtle impacts on the flavor and texture, usually for the good!</li>
+            <li>Again, simplicity was my goal with this calculator so you'll note that I don't worry about different flour types (e.g. whole wheat, rye, APF).  I've found that a small amount of rye or whole wheat in your levain or sourdough has only subtle impacts on the flavor and texture, usually for the good!</li>
         </ul>
         <p>Notes on the <b>Sourdough Discard</b> inputs:</p>
         <ul>
@@ -27,7 +48,7 @@
         <p>You'll find some sample recipes in the navigation bar.  I've used levain with 25% rye, 25% whole wheat, and 50% APF in both the tortilla and date nut loaf recipes with the given hydration and discard percentages, and they were pretty darned tasty and lovely.  I did not bake the whole wheat loaf in the sample recipe, but I have used similar recipes and the end product was delicious with a gorgeous crumb.  
         </p>    
         <p>If I can't maintain baker's percentages, I will limit the amount of discard and flash a message indicating so.  That means that the combination of sourdough hydration and the percentage of dough to be replaced by discard will not give values that make any sense.  And the last thing I want is to be accused of allowing you to bake a brick or something resembling hot quicksand!  If your recipe is really out of whack then I'll simply take you back to the main page and force you to start over.  In any case, relax, don't worry, and have another slice of buttered bread.</p>
-        <p>Questions?  Comments?  Need help?  Contact me at <a href="mailto:help@pandulce.info">help@pandulce.info</a> or lick on the GitHub link in the navigation bar and open an issue.</p>
+        <p>Questions?  Comments?  Need help?  Contact me at <a href="mailto:help@pandulce.info">help@pandulce.info</a> or click on the GitHub link in the navigation bar and open an issue.</p>
                  
     </div>
 {% endblock %}

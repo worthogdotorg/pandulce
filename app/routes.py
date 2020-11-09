@@ -1,8 +1,74 @@
-#from wtforms.fields.core import IntegerField
 from app.forms import breadcalcinput, recipeinput, recipeoutput, recipesamples
 from app import app
 from flask import render_template, session, url_for, redirect, request, flash
 from app import themath
+
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
+def index():
+    form = breadcalcinput()
+    
+    #if form.validate_on_submit():
+    if request.method == "POST":   
+        if request.form["levain_units_calc"]=="gm":
+            session['levain_units_calc'] = "grams"
+        else:
+            session['levain_units_calc'] = "ounces"
+        session['flour_qty_recipe'] = request.form["flour_qty_recipe"]
+        session['water_qty_recipe'] = request.form["water_qty_recipe"]
+        session['levain_qty_recipe'] = request.form["levain_qty_recipe"]
+        session['levain_hyd_recipe'] = request.form["levain_hyd_recipe"]
+        session['levain_hyd_yours'] = request.form["levain_hyd_yours"]
+        return redirect('/breadcalctable')
+   
+    return render_template('index.html', form=form)
+
+@app.route('/breadcalctable', methods=['GET', 'POST'])
+def breadcalctable():
+    # These are session variables
+    ingredients_calc = dict()
+    ingredients_calc['levain_units'] = session['levain_units_calc']
+    ingredients_calc['flour_qty_recipe'] = flour_qty_recipe = session['flour_qty_recipe']
+    ingredients_calc['water_qty_recipe'] = water_qty_recipe = session['water_qty_recipe']
+    ingredients_calc['levain_qty_recipe'] = levain_qty_recipe = session['levain_qty_recipe']
+    ingredients_calc['levain_hyd_recipe'] = levain_hyd_recipe = session['levain_hyd_recipe'] 
+    ingredients_calc['levain_hyd_yours'] = levain_hyd_yours = session['levain_hyd_yours'] 
+    
+    # These are calculations for original recipe
+    ingredients_calc['dough_weight'] = int(flour_qty_recipe) + int(water_qty_recipe) + int(levain_qty_recipe)
+    # pff is prefermented flour
+    ingredients_calc['pff'] = pff = int(themath.levain_flour_qty_fnc(int(levain_qty_recipe),int(levain_hyd_recipe) / 100))
+    flour_total = pff + int(flour_qty_recipe)
+    ingredients_calc['levain_water_recipe'] = levain_water_recipe = int(themath.levain_water_qty_fnc(int(levain_qty_recipe),int(levain_hyd_recipe) / 100))
+    ingredients_calc['water_total'] = water_total = int(water_qty_recipe) + levain_water_recipe
+    ingredients_calc['water_bakers_pct'] = round(water_total /  flour_total * 100)
+    ingredients_calc['water_recipe_bakers_pct'] = round(int(water_qty_recipe) /  flour_total * 100)
+    ingredients_calc['flour_total'] = flour_total = pff + int(flour_qty_recipe)
+    ingredients_calc['flour_recipe_bakers_pct'] = round(int(flour_qty_recipe) /  flour_total * 100)
+    ingredients_calc['levain_bakers_pct'] = round(int(levain_qty_recipe) /  flour_total * 100)
+    ingredients_calc['pff_bakers_pct'] = round(pff / flour_total * 100)
+    ingredients_calc['levain_water_bakers_pct'] = round(levain_water_recipe / flour_total * 100)
+    ingredients_calc['dough_hydration_recipe'] = round(water_total / flour_total * 100)
+
+    #
+    # These are calculations for adjusted recipe
+    #
+
+    ingredients_calc['levain_water_adjusted'] = levain_water_adjusted = int(themath.levain_water_adjusted(pff, int(levain_hyd_yours) / 100))
+    ingredients_calc['levain_water_adjusted_bakers_pct'] = round(levain_water_adjusted / flour_total * 100)
+    ingredients_calc['water_qty_adjusted'] = water_qty_adjusted = int(water_total - levain_water_adjusted)
+    ingredients_calc['water_adjusted_bakers_pct'] = round(water_qty_adjusted /  flour_total * 100)
+    ingredients_calc['levain_qty_adjusted'] = levain_qty_adjusted = levain_water_adjusted + pff
+    ingredients_calc['levain_adjusted_bakers_pct'] = round(int(levain_qty_adjusted) /  flour_total * 100)
+    ingredients_calc['flour_qty_adjusted'] = flour_qty_adjusted = flour_total - pff 
+    ingredients_calc['flour_adjusted_bakers_pct'] = round(int(flour_qty_adjusted) /  flour_total * 100)
+
+    return render_template('breadcalctable.html', **ingredients_calc)  
+
+
+# 
+# Below is code for sourdough discard calculator
+#
 
 def ingredients_dict(ingredients):
    
@@ -13,13 +79,13 @@ def ingredients_dict(ingredients):
     levain_pct = int(ingredients['levain_pct']) / 100
     dough_weight = flour_qty + water_qty + dairy_qty
     
-    levain_qty = int(themath.levain_qty_fnc(levain_pct, dough_weight))
+    levain_qty = int(themath.sourdough_qty_fnc(levain_pct, dough_weight))
           
     levain_water = int(themath.levain_water_qty_fnc(levain_qty, levain_hyd))
     if levain_water > water_qty:
         levain_water = water_qty
-        levain_pct = ingredients['levain_pct'] = themath.levain_pct_adjust_fnc(levain_water, levain_hyd, dough_weight)
-        levain_qty = int(themath.levain_qty_fnc(levain_pct, dough_weight))
+        levain_pct = ingredients['levain_pct'] = themath.sourdough_pct_adjust_fnc(levain_water, levain_hyd, dough_weight)
+        levain_qty = int(themath.sourdough_qty_fnc(levain_pct, dough_weight))
         flash("Can't maintain bakers percentages. Constraining max sourdough quantity as shown in the Adjusted Recipe.")
         if dairy_qty > 0:
             flash("Can't maintain bakers percentages. Constraining max sourdough quantity as shown in the Adjusted Recipe.")
@@ -50,9 +116,8 @@ def ingredients_dict(ingredients):
     return(ingredients)
 
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/index', methods=['GET', 'POST'])
-def index():
+@app.route('/discard', methods=['GET', 'POST'])
+def discard():
     form = recipeinput()
     
     #if form.validate_on_submit():
@@ -70,7 +135,7 @@ def index():
         session['levain_hyd'] = request.form["levain_hyd"]
         session['levain_pct'] = request.form["levain_pct"]
         return redirect('/newrecipe')
-    return render_template('index.html', form=form)
+    return render_template('discard.html', form=form)
 
 
 @app.route('/newrecipe', methods=['GET', 'POST'])
@@ -96,7 +161,7 @@ def newrecipe():
    
     if ingredients['new_flour_qty'] < 0:
         flash("Discard percentage was too high for a recipe that would probably have had the consistency of quicksand. Check your recipe. Starting over.")
-        return redirect('/index')
+        return redirect('/discard')
 
     return render_template('newrecipe.html', form=form, title="Calculated Recipe", **ingredients)  
 
@@ -162,54 +227,9 @@ def wholewheat():
  
     return render_template('newrecipe.html', form=form, title="Calculated Recipe", **ingredients)  
 
-
-@app.route('/breadcalc', methods=['GET', 'POST'])
-def breadcalc():
-    form = breadcalcinput()
-    
-    #if form.validate_on_submit():
-    if request.method == "POST":   
-        if request.form["levain_units_calc"]=="gm":
-            session['levain_units_calc'] = "grams"
-        else:
-            session['levain_units_calc'] = "ounces"
-        session['flour_qty_recipe'] = request.form["flour_qty_recipe"]
-        session['water_qty_recipe'] = request.form["water_qty_recipe"]
-        session['levain_qty_recipe'] = request.form["levain_qty_recipe"]
-        session['levain_hyd_recipe'] = request.form["levain_hyd_recipe"]
-        session['levain_hyd_yours'] = request.form["levain_hyd_yours"]
-        return redirect('/breadcalctable')
-   
-    return render_template('breadcalc.html', form=form)
-
-@app.route('/breadcalctable', methods=['GET', 'POST'])
-def breadcalctable():
-
-
-    ingredients_calc = dict()
-    ingredients_calc['levain_units'] = session['levain_units_calc']
-    ingredients_calc['flour_qty_recipe'] = flour_qty_recipe = session['flour_qty_recipe']
-    ingredients_calc['water_qty_recipe'] = water_qty_recipe = session['water_qty_recipe']
-    ingredients_calc['levain_qty_recipe'] = levain_qty_recipe = session['levain_qty_recipe']
-    ingredients_calc['levain_hyd_recipe'] = levain_hyd_recipe = session['levain_hyd_recipe'] 
-    ingredients_calc['levain_hyd_yours'] = session['levain_hyd_yours'] 
-    
-    ingredients_calc['dough_weight'] = int(flour_qty_recipe) + int(water_qty_recipe) + int(levain_qty_recipe)
-    # pff is prefermented flour
-    ingredients_calc['pff'] = pff = int(themath.levain_flour_qty_fnc(int(levain_qty_recipe),int(levain_hyd_recipe) / 100))
-    flour_total = pff + int(flour_qty_recipe)
-    ingredients_calc['levain_water_recipe'] = levain_water_recipe = int(themath.levain_water_qty_fnc(int(levain_qty_recipe),int(levain_hyd_recipe) / 100))
-    ingredients_calc['water_total'] = water_total = int(water_qty_recipe) + levain_water_recipe
-    ingredients_calc['water_bakers_pct'] = round(water_total /  flour_total * 100)
-    ingredients_calc['water_recipe_bakers_pct'] = round(int(water_qty_recipe) /  flour_total * 100)
-    ingredients_calc['flour_total'] = flour_total = pff + int(flour_qty_recipe)
-    ingredients_calc['flour_recipe_bakers_pct'] = round(int(flour_qty_recipe) /  flour_total * 100)
-    ingredients_calc['levain_bakers_pct'] = round(int(levain_qty_recipe) /  flour_total * 100)
-    ingredients_calc['pff_bakers_pct'] = round(pff / flour_total * 100)
-    ingredients_calc['levain_water_bakers_pct'] = round(levain_water_recipe / flour_total * 100)
-
-    return render_template('breadcalctable.html', **ingredients_calc)  
-
+#
+#  Below is code for about and help screens
+#
 @app.route('/about', methods=['GET', 'POST'])
 def about():  
     return render_template('about.html')
