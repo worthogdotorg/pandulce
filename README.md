@@ -1,37 +1,51 @@
+# Bakers Percentage Calculator
+This was inspired by three things:
+
+* The comments from the article Introduction to Baker’s Percentages in the excellent The Perfect Loaf website.
+* My own baking experience maintaining a 100% hydration starter but wanting to quickly convert recipes using varying hydration levels. For example, I often bake breads from FLOUR WATER SALT YEAST book, but the author uses an 80% hydration starter and I maintain my starter at 100%. Therefore, I have to convert the recipe in order to maintain dough hydration and prefermented flour quantities.
+* During the pandemic, in addition to spending a lot of time in the kitchen and exercising to keep things in balance, I thought it a good time to learn Python full stack programming.
+
 # Sourdough Starter Discard Recipe Calculator
 
 Like many, I've been finding creative ways to use sourdough discard which is safe, edible and delicious. So when not baking boules, I find myself using discard in recipes that may not call for sourdough, like traditional whole wheat bread, date nut loaf and tortillas, ¡Ay caramba!
 
-But when replacing flour and water with sourdough discard it's important to maintain [bakers percentages](https://www.theperfectloaf.com/reference/introduction-to-bakers-percentages/). Otherwise you may end up baking a brick or something resembling hot porridge. This simple calculator will compute the amount of flour and water required to maintain the original recipe bakers percentages when replacing some portion of the dough with sourdough discard.
+But when replacing flour and water with sourdough discard it's important to maintain bakers percentages. Otherwise you may end up baking a brick or something resembling a stiff, hot porridge. This simple calculator will compute the amount of flour and water required to maintain the original recipe bakers percentages when replacing some portion of the dough with sourdough discard.
+
+My primary objective with the calculator--beyond accuracy and a clean interface--is simplicity. Two screens, that's it! For more information on how to use the calculator, give it a test ride and click Help in the navigation bar.
 
 ## Usage
 
-My primary objective with the calculator--beyond accuracy and a clean interface--is simplicity. Two screens, that's it!
+My primary objective with the calculators--beyond accuracy and a clean interface--is simplicity. 
 
-For more information on how to use the calculator, give it a test ride at http://pandulce.info and click Help in the navigation bar.
+For more information on how to use the calculator, give it a test ride at www.pandulce.info and click Help in the navigation bar.
 
 ## Roadmap
 
-Check out the [GitHub repository Issues list](https://github.com/worthogdotorg/bread/issues) for application enhancements that I've thought of. Can you think of anything? If so, then add a new issue to the list. In addition to those, here are a couple of others:
-
-*   Package the application in a container to better understand that process.
-*   Create a second calculator showing how to adjust a recipe calling for a levain when using different hydrations. Hence the placeholder link in the navigation bar, which is just sort of a teaser for now.
+Check out the [GitHub repository Issues list](https://github.com/worthogdotorg/pandulce/issues) for enhancements. Can you think of anything that you'd like to see? If so, then add a new issue to the list or send me an email.
 
 ## The Stack
 
 The desire to have a simple calculator and learn something about Python full stack programming steered me in the direction of this stack. I used Pipenv to manage the packages and virtual environments for this project, so here's an excerpt from the Pipfile:
 
-    [packages]
-    flask = "*"
-    python-dotenv = "*"
-    flask-wtf = "*"
-    bootstrap-flask = "*"
-    flask-bootstrap = "*"
-    sympy = "*"
+    bootstrap-flask==1.5
+    click==7.1.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'
+    dominate==2.5.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+    flask-bootstrap==3.3.7.1
+    flask-wtf==0.14.3
+    flask==1.1.2
+    itsdangerous==1.1.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+    jinja2==2.11.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'
+    markupsafe==1.1.1; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+    mpmath==1.1.0
+    python-dotenv==0.14.0
+    sympy==1.6.2
+    visitor==0.1.3
+    werkzeug==1.0.1; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'
+    wtforms==2.3.3
     
 I'm a newbie full stack Python programmer, so don't be surprised at anything you find that might be a little unconventional. And I won't be offended if you tell me how to make things more Pythonic or in accordance with best practices.
 
-The app is currently running on an AWS EC2 instance.  When I figure out how to run in a container I will likely move to a more permanent home.  
+The app is currently running as an Azure Web App for containers. Building and implementing the container app was way easier than I expected.    
 
 ## Acknowledgments
 
@@ -48,6 +62,9 @@ Icons and glyphs make the user experience a little more pleasant, IMHO. The imag
 I could not have deployed this on an AWS EC2 instance without [this very well written blog post on Twilio](https://www.twilio.com/blog/deploy-flask-python-app-aws). 
 
 For this calculator, simplicity was paramount even if the algebra required was sometimes not so simple (at least for me)! Somewhat embarrassingly, I could not have figured out the math without the help of [this terrific site](https://munchietamer.com/bread-math-sourdough-starter-and-dough-hydration/) which provided the needed formulas and helpful explanations. Hey, it's been awhile since I've done high school algebra. Thank you. Gracias. Huzzahs!
+
+![Too Old For This Shit](https://imgs.xkcd.com/comics/too_old_for_this_shit.png)
+
 
 ## About Me
 
