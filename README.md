@@ -1,8 +1,8 @@
 # Bakers Percentage Calculator
 This was inspired by three things:
 
-* The comments from the article Introduction to Baker’s Percentages in the excellent The Perfect Loaf website.
-* My own baking experience maintaining a 100% hydration starter but wanting to quickly convert recipes using varying hydration levels. For example, I often bake breads from FLOUR WATER SALT YEAST book, but the author uses an 80% hydration starter and I maintain my starter at 100%. Therefore, I have to convert the recipe in order to maintain dough hydration and prefermented flour quantities.
+* The [Introduction to Baker’s Percentages](https://www.theperfectloaf.com/reference/introduction-to-bakers-percentages/) article and subsequent comments in the excellent The Perfect Loaf website.
+* My own baking experience maintaining a 100% hydration starter but wanting to quickly convert recipes using varying hydration levels. For example, I often bake breads from [FLOUR WATER SALT YEAST](https://kensartisan.com/flour-water-salt-yeast), but the author uses an 80% hydration starter and I maintain my starter at 100%. Therefore, I have to convert the recipe in order to maintain dough hydration and prefermented flour quantities.
 * During the pandemic, in addition to spending a lot of time in the kitchen and exercising to keep things in balance, I thought it a good time to learn Python full stack programming.
 
 # Sourdough Starter Discard Recipe Calculator
@@ -61,10 +61,13 @@ Icons and glyphs make the user experience a little more pleasant, IMHO. The imag
 
 I could not have deployed this on an AWS EC2 instance without [this very well written blog post on Twilio](https://www.twilio.com/blog/deploy-flask-python-app-aws). 
 
-For this calculator, simplicity was paramount even if the algebra required was sometimes not so simple (at least for me)! Somewhat embarrassingly, I could not have figured out the math without the help of [this terrific site](https://munchietamer.com/bread-math-sourdough-starter-and-dough-hydration/) which provided the needed formulas and helpful explanations. Hey, it's been awhile since I've done high school algebra. Thank you. Gracias. Huzzahs!
+For this calculator, simplicity was paramount even if the algebra required was sometimes not so simple (at least for me)! Somewhat embarrassingly, I could not have figured out the math without the help of [this terrific site](https://munchietamer.com/bread-math-sourdough-starter-and-dough-hydration/) which provided the needed formulas and helpful explanations. Hey, it's been awhile since I've done high school algebra. 
 
 ![Too Old For This Shit](https://imgs.xkcd.com/comics/too_old_for_this_shit.png)
 
+Thanks to [XKCD](https://xkcd.com) for the awesome comic above.
+
+Gracias. Huzzahs!
 
 # About Me
 
