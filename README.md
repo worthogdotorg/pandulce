@@ -13,17 +13,17 @@ But when replacing flour and water with sourdough discard it's important to main
 
 My primary objective with the calculator--beyond accuracy and a clean interface--is simplicity. Two screens, that's it! For more information on how to use the calculator, give it a test ride and click Help in the navigation bar.
 
-## Usage
+# Usage
 
 My primary objective with the calculators--beyond accuracy and a clean interface--is simplicity. 
 
 For more information on how to use the calculator, give it a test ride at www.pandulce.info and click Help in the navigation bar.
 
-## Roadmap
+# Roadmap
 
 Check out the [GitHub repository Issues list](https://github.com/worthogdotorg/pandulce/issues) for enhancements. Can you think of anything that you'd like to see? If so, then add a new issue to the list or send me an email.
 
-## The Stack
+# The Stack
 
 The desire to have a simple calculator and learn something about Python full stack programming steered me in the direction of this stack. I used Pipenv to manage the packages and virtual environments for this project, so here's an excerpt from the Pipfile:
 
@@ -47,7 +47,7 @@ I'm a newbie full stack Python programmer, so don't be surprised at anything you
 
 The app is currently running as an Azure Web App for containers. Building and implementing the container app was way easier than I expected.    
 
-## Acknowledgments
+# Acknowledgments
 
 There are bushels of good bread calculators for calculating recipes, timings, or just exhibited a level of obsession about bread that I could appreciate. Here are three which inspired me:
 
@@ -66,7 +66,7 @@ For this calculator, simplicity was paramount even if the algebra required was s
 ![Too Old For This Shit](https://imgs.xkcd.com/comics/too_old_for_this_shit.png)
 
 
-## About Me
+# About Me
 
 I'm a long time home baker and have been maintaining starters since long before the pandemic struck. I'm also a little geeky and have some time on my hands (and sometimes bits of freshly kneaded dough). I'm sort of semi-retired, but hoping to somehow leverage my nascent programming skills and many years of enterprise data center experience into something interesting with an organization doing good things for all of us.
 
