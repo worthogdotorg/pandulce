@@ -4,51 +4,82 @@
 
     <div class="container pt-4">
         <h1>Help</h1>
-        <a href="#bakerspct">Bakers Percentage Calculator</a>
+        <p>Questions?  Comments?  Need help?  Contact me at <a href="mailto:help@pandulce.info">help@pandulce.info</a> or click on the GitHub link in the navigation bar and open an issue.</p>
+        
+        <br><a href="#bakerspct">Standard Baker's Percentage Calculator by Weight</a>
+        <br><a href="#bakerspctwt">Baker's Percentage Calculator by Weight</a>
         <br><a href="#discard">Sourdough Discard Calculator</a>
-        <h2 id="bakerspct" class="pt-5">Bakers Percentage Calculator</h2> 
-        <p>Bakers percentages are an obsession amongst bakers, and necessarily so if we are trying to double or halve a recipe or--important for me--modifying a recipe that calls for a levain with a different hydration percentage from my own.  I maintain a starter at 100% hydration, but often encounter recipes calling for 80% hydration level levain.</p>
+        
+
+        <h2 id="bakerspct" class="pt-5">Standard Baker's Percentage Calculator</h2> 
+        <p>This calculator is <em>inspired by</em> <a href="https://www.bbga.org/files/2009FormulaFormattingSINGLES.pdf">The Bread Bakers Guild of America (BBGA) Formula Layout Standards</a>, Part I, Diagram 3.  Start there to better understand the approach that I've taken with this calculator.  The BBGA documentation is a little ambiguous about how to approach calculations if you--like me--know (for example) your  preferment flour percentages, know the total formula hydration, know the prefermented flour percentage, but don't know how to bring it all together.  I tried to address that with this calculator, always staying true to the spirit of the BBGA calculator as I understand it.
+        </p>    
+        <h3 class="text-muted">Usage</h3>
+        <p>Notes on the <b>Standard Baker's Percentages Levain Calculator</b> inputs:
+        <ul>
+            <li>Fields are pretty self explanatory, but note that flour types and percentages should automatically total 100%.  The bottom flour percentage will automatically calculate based on the top two percentages.  If you accidentally enter the same flour twice, I simply add the two percentages together.</li>
+            <li>If you are using a straight dough (no preferment), select "None (straight dough") in the Preferment Type field. By selecting "None", all other values in the preferment column will be ignored.</li>
+            <li>If you enter an amount of flour or yeast in the PF1 column that exceeds what you have in the total formula, I  recalculate total formula values to accommodate the preferment ingredients. (This was tricky, and I took an approach that not everybody might agree with.  Let me know if you have thoughts about other ways to approach this conundrum.) </li>
+            <li>If you enter an amount of flour or yeast in the PF1 column that is less than what you have in the total formula, I subtract the calculated mass in the preferment from the total formula mass to get the final formula figures, which is exactly what you would expect.  ;-)</li>
+            <li>I do not allow you to enter values which will yield a higher dough hydration percentage that what you have in the total formula.  The calculator will force you to start over in that case.</li>
+            <li>The seed percentage is different from the other preferment data points in that it is a percentage of the total formula flour rather than the flour inthe preferment.  This is in line with the BBGA guidelines.  The default values show 30% prefermented flour and 3% seed, which means that you have inoculated your levain with 10% starter (30% * 10% = 3%).  If say you use 25% prefermented flour and you know that you inoculate the levain with 20% starter, you can calculate the seed input like this:  25% * 20% = 5%.  So you would enter 5% seed in the calculator.</li>    
+        </eul>
+        </p>
+        <p>Notes on the <b>Baker's Percentages Table</b> screen:
+        <ul>
+            <li>The output conforms to the BBGA baker's percentage table format.</li>
+            <li>The ingredient amounts to be used in your recipe are shown in the Final Formula column.</li>
+        </ul>
+        </p>
+        
+        
+        <h2 id="bakerspctwt" class="pt-5">Baker's Percentage Calculator by Weight</h2> 
+        <p>Baker's percentages are an obsession amongst bakers, and necessarily so if we are trying to double or halve a recipe or--important for me--modifying a recipe that calls for a levain with a different hydration percentage from my own.  I maintain a starter at 100% hydration, but often encounter recipes calling for 80% hydration level levain.</p>
         <p>When using a levain with a different hydration than that called for in the recipe, the most important thing is to maintain the amount of prefermented flour in the modified recipe.  But you also have to adjust the levain and water quantities so as not to change the dough hydration level.  This calculator should make that conversion a breeze.  </p>
         <h3 class="text-muted">Usage</h3> 
         
-        <p>Notes on the <b>Bakers Percentages Levain Calculator</b> inputs:</p>
+        <p>Notes on the <b>Baker's Percentages Levain Calculator</b> inputs:
         <ul>
-            <li>The flour, water and levain weights are pretty self explanatory.  You have the option of choosing your weight unit, grams or ounces, but I only use that to show the weight unit in bakers percentage table. That is, I don't convert from one to another weight unit (grams to ounces, ounces to grams).  </li>
+            <li>The flour, water and levain weights are pretty self explanatory.  You have the option of choosing your weight unit, grams or ounces, but I only use that to show the weight unit in baker's percentage table. That is, I don't convert from one to another weight unit (grams to ounces, ounces to grams).  </li>
             <li>Simplicity was my goal with this calculator, so you'll note that I don't accommodate different flour types (e.g. whole wheat, rye, APF) or adjunct ingredients (e.g. nuts, dried fruits).  Perhaps I'll do that in some future version of the calculator.</li>
-            <li>Use the slider bar to select the levain hydration percentage.  Note that it increments in units of 5.  Round up or down to select the hydration percentage closest to what's called for in the recipe.  That is, if the recipe calls for 66% hydration dough, select 65%. </li>
+            <li>Use the slider bar to select the levain hydration percentage.  Round up or down to select the hydration percentage closest to what's called for in the recipe.  That is, if the recipe calls for 66% hydration dough, select 65%. </li>
         </ul>
-        <p>Notes on the <b>Bakers Percentages Table</b> screen:</p>
+        </p>
+        <p>Notes on the <b>Baker's Percentages Table</b> screen:
         <ul>
-            <li>The Original Recipe card shows the total dough weight and dough hydration.  To calculate the dough hydration I included the amount of flour (prefermented flour) and water in the starter, often omitted because of <a href="https://xkcd.com/447/" target="_blank">the math</a> but which most seem to agree should be included.</li>
-            <li>The Flour and Water areas show <b>Prefermented Flour</b> and <b>Water in Levain</b> values.  Note that when you sum those two values, they will equal the quantity of starter used in the recipe.</li>
-            <li>The dough weight, dough hydration, flour and prefermented flour values will be maintained in both the original and adjusted recipes no matter what hydration levels are entered.  This is by design--they should not change when adjusting recipes for varying hydration levels.</li>
+            <li>The output now conforms to the BBGA baker's percentage table format.  To calculate the dough hydration I included the amount of flour (prefermented flour) and water in the starter, often omitted because of <a href="https://xkcd.com/447/" target="_blank">the math</a> but which most seem to agree should be included.</li>
+            <li>The ingredient amounts to be used in your recipe are shown in the Final Formula column.</li>
         </ul>
+        </p>
 
         <h2 id="discard" class="pt-5">Sourdough Starter Discard Recipe Calculator</h2> 
         
-        <p>When replacing flour and water in a recipe with sourdough discard, it's important to maintain bakers percentages or you may end up either baking a brick or cooking up a hard porridge.  This simple calculator will compute the amount of flour and water needed after the addition of your sourdough discard, and allows one to select the hydration of your sourdough. This article has a very simple explanation for bakers who are wondering about how to use discard in conventional recipes, <a href="https://www.thekitchn.com/using-sourdough-starter-discard-23025996#comments-23025996" target="_blank">"You Can Add Sourdough Starter Discard to Almost Anything — It Just Requires a Little Math"</a></p>
+        <p>When replacing flour and water in a recipe with sourdough discard, it's important to maintain baker's percentages or you may end up either baking a brick or cooking up a hard porridge.  This simple calculator will compute the amount of flour and water needed after the addition of your sourdough discard, and allows one to select the hydration of your sourdough. This article has a very simple explanation for bakers who are wondering about how to use discard in conventional recipes, <a href="https://www.thekitchn.com/using-sourdough-starter-discard-23025996#comments-23025996" target="_blank">"You Can Add Sourdough Starter Discard to Almost Anything — It Just Requires a Little Math"</a></p>
         <h3 class="text-muted">Usage</h3> 
-        <p>Notes on the <b>Original Recipe</b> inputs:</p>
+        <p>Notes on the <b>Original Recipe</b> inputs:
         <ul>
             <li>The flour, water and milk weights are pretty self explanatory.  If you're using a preferment or sponge, exclude the flour and water in your preferment from the calculations.</li>
             <li>Again, simplicity was my goal with this calculator so you'll note that I don't worry about different flour types (e.g. whole wheat, rye, APF).  I've found that a small amount of rye or whole wheat in your levain or sourdough has only subtle impacts on the flavor and texture, usually for the good!</li>
         </ul>
-        <p>Notes on the <b>Sourdough Discard</b> inputs:</p>
+        </p>
+        <p>Notes on the <b>Sourdough Discard</b> inputs:
         <ul>
             <li>If your discard or levain has equal parts flour and water, the <b>Sourdough hydration</b> value will be 100% (the default value).  If you're using some other ratio, then use the slider bar to adjust the hydration to the proper value (if known). If you're not sure, <a href="https://www.sourdough.co.uk/sourdough-hydration-calculator/">this site</a> has a clear explanation and both simple and advanced calculators to determine the hydration of your sourdough.</li> 
             <li>The <b>Discard amount</b> value is the percentage of flour and water in your recipe to be replaced by sourdough discard.  I find that 10-25% works for most recipes, and I used slider bars in the Sourdough Discard column to limit the hydration and discard percentages to <em>reasonable levels.</em> You'll want a lighter hand (10%) with neutral tasting breads like tortillas, but you can probably go a little crazy for stronger tasting loaves like date nut loaf!  But the calculator doesn't allow you to go so crazy as to replace greater than 50% of your dough with sourdough.</li> 
         </ul>
-        <p>Notes on the <b>Adjust Recipe</b> screen:</p>
+        </p>
+        <p>Notes on the <b>Adjust Recipe</b> screen:
         <ul>
             <li>The Starter weight is the amount of starter that you will add to the <em>wet</em> ingredients.</li>
             <li>The "New" flour and water weights show the amount of flour and water you will add with your dry ingredients.  These replace the amounts from your original recipe.</li>
-            <li>The "flour/water in starter" weights simply show how much flour and water from the original recipe are replaced by sourdough discard.  Combine the new flour/water weights with the flour and water in the starter and you see that bakers percentages are maintained!</li>
+            <li>The "flour/water in starter" weights simply show how much flour and water from the original recipe are replaced by sourdough discard.  Combine the new flour/water weights with the flour and water in the starter and you see that baker's percentages are maintained!</li>
             <li>Note that the milk weight never changes in the calculator. That's by design. Liquid milk and buttermilk are 80-90% water, so if you want to add more sourdough discard and you've already replaced all the water in the recipe with discard, one option is to use dry milk or buttermilk powder, decrease the figure in the milk field (decreasing the hydration), and increase the percentage of discard.  Don't worry about the moisture content of your milk powder, it won't make a lick of difference in your recipe.  Just remember to relax, don't worry, and have another slice of buttered bread.</li>
         </ul>
+        </p>
         <p>You'll find some sample recipes in the navigation bar.  I've used levain with 25% rye, 25% whole wheat, and 50% APF in both the tortilla and date nut loaf recipes with the given hydration and discard percentages, and they were pretty darned tasty and lovely.  I did not bake the whole wheat loaf in the sample recipe, but I have used similar recipes and the end product was delicious with a gorgeous crumb.  
         </p>    
         <p>If I can't maintain baker's percentages, I will limit the amount of discard and flash a message indicating so.  That means that the combination of sourdough hydration and the percentage of dough to be replaced by discard will not give values that make any sense.  And the last thing I want is to be accused of allowing you to bake a brick or something resembling hot quicksand!  If your recipe is really out of whack then I'll simply take you back to the main page and force you to start over.  In any case, relax, don't worry, and have another slice of buttered bread.</p>
-        <p>Questions?  Comments?  Need help?  Contact me at <a href="mailto:help@pandulce.info">help@pandulce.info</a> or click on the GitHub link in the navigation bar and open an issue.</p>
+
                  
     </div>
 {% endblock %}

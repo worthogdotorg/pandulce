@@ -8,137 +8,97 @@
           <div class="card mt-5 border-0">
               <div class="card-body">
                   <h1>Bakers Percentages Tables</h1>  
-                  <p>This shows bakers percentages for the original and adjusted recipes.  The adjusted recipe figures are only relevant if you input different hydration percentages on the previous screen.  Otherwise, the tables below will show the same values.
-              </div>
-          </div>
-      </div>  
-    
-      <div class="row">
-          <div class="col-md-6  mt-1">
-              <div class="card">
-                  <h3 class="card-header">Original Recipe</h3>
-                  <div class="card-body">
-                    <p class="font-weight-bold">Dough Weight:  {{ dough_weight }}
-                    <br>Dough Hydration:  {{ dough_hydration_recipe }}%
-                    </p>
+                  <p> </p>
+              
                       
-                    <table class="table">
-                        <thead class="thead-light">
-                          <tr>
-                            <th scope="col">Ingredients</th>
-                            <th scope="col" class="text-right">Weight ({{ levain_units }}) </th>
-                            <th scope="col" class="text-right">Bakers Percentages</th>
+                    <table table table-bordered table-striped>
+                      <thead>
+                          <tr style="background:GAINSBORO">
+                              <th colspan="1" style="background:gray"></th>
+                              <th colspan="2" class="text-normal" style="text-align:center">Total dough weight = {{ '%0.1f'| format(tdw|float) }} {{ units }} </th>
+                              <th colspan="2" class="text-normal" style="text-align:center">Total flour prefermented = {{ '%0.1f'| format(pff_pct|float) }}% </th>
+                              <td colspan="2" style="background:gray"></td>
                           </tr>
-                        </thead>
-                        <tbody>
                           <tr>
-                            <th scope="row"><img src="https://img.icons8.com/android/24/000000/wheat.png"/> Flour</th>
-                            <td class="text-right"> {{ flour_total }}  </td>
-                            <td class="text-right">100%</td>
-                          </tr>  
-
-                          <tr>
-                            <th scope="row" class="text-muted text-center">Flour in Recipe</th>
-                            <td class="text-right">  {{  flour_qty_recipe }}  </td>
-                            <td class="text-right">  {{  flour_recipe_bakers_pct }}%</td>
+                              <th colspan="1" style="color:gray"></th>
+                              <th colspan="2" style="color:blue;text-align:center">TOTAL FORMULA (from original recipe)</th>
+                              <th colspan="2" style="color:brown;text-align:center">YOUR PREFERMENT</th>
+                              <th colspan="2" style="text-align:center">FINAL MIX</th>
                           </tr>
-                                                        
-                          <tr>
-                            <th scope="row" class="text-muted text-center">Prefermented Flour</th>
-                            <td class="text-right">  {{  pff }}  </td>
-                            <td class="text-right">  {{  pff_bakers_pct }}%</td>
+                          <tr style="background:salmon;text-align:center">
+                              <th colspan="1">Ingredients</th>
+                              <th colspan="1">%</th>
+                              <th colspan="1">{{  units  }}</th>
+                              <th colspan="1">%</th>
+                              <th colspan="1">{{  units  }}</th>
+                              <th colspan="1">Ingredients</th>
+                              <th colspan="1">{{  units  }}</th>
                           </tr>
-                        
-                          <tr>
-                            <th scope="row"><img src="https://img.icons8.com/android/24/000000/water.png"/> Water</th>
-                            <td class="text-right">  {{ water_total }}  </td>
-                            <td class="text-right">  {{  water_bakers_pct }}%  </td>
-                          </tr>
-
-                          <tr>
-                            <th scope="row" class="text-muted text-center">Water in Recipe</th>
-                            <td class="text-right">  {{  water_qty_recipe }}  </td>
-                            <td class="text-right">  {{  water_recipe_bakers_pct }}%  </td>
-                          </tr>
-
-                          <tr>
-                            <th scope="row" class="text-muted text-center">Water in Levain</th>
-                            <td class="text-right">  {{  levain_water_recipe }}  </td>
-                            <td class="text-right">  {{  levain_water_bakers_pct }}%  </td>
+                      </thead>
+                      <tbody>
+                          <tr style="background:GAINSBORO">
+                              <th><img src="https://img.icons8.com/android/24/000000/wheat.png"/> Total Flour</th>
+                              <td style="color:blue">100% </td>
+                              <td style="color:blue">{{ '%0.1f'| format(flour_mass|float) }}</td>
+                              <td style="color:brown">100%</td>
+                              <td style="color:brown">{{ '%0.1f'| format(pf_flour_mass|float) }}</td>
+                              <td style="color:black;text-align:left">Flour</td>
+                              <td style="color:black">{{ '%0.1f'| format(final_flour_mass|float)  }}</td>
                           </tr>
                           
                           <tr>
-                            <th scope="row"><img src="https://img.icons8.com/material-sharp/24/000000/mason-jar.png"/> Levain ({{ levain_hyd_recipe }}% hydration) </th>
-                            <td class="text-right">  {{  levain_qty_recipe }}  </td>
-                            <td class="text-right">  {{  levain_bakers_pct }}% </td>
+                              <th><img src="https://img.icons8.com/android/24/000000/water.png"/> Water</th>
+                              <td style="color:blue">{{  '%0.1f'| format(water_pct|float) }}% </td>
+                              <td style="color:blue">{{ '%0.1f'| format(water_mass|float) }}</td>
+                              <td style="color:brown">{{ levain_hyd_yours }}%</td>
+                              <td style="color:brown">{{ '%0.1f'| format(pf_water_mass|float) }} </td>
+                              <td style="color:black;text-align:left">Water</td>
+                              <td style="color:black">{{ '%0.1f'| format(final_water_mass|float)  }}</td>
                           </tr>
-                        </tbody>
-                      </table>
-                      
-                  </div>  
-              </div> 
-          </div>
-
-
-          <div class="col-md-6 mt-1">
-            <div class="card">
-              <h3 class="card-header">Adjusted Recipe</h3>
-              <div class="card-body">
-                <p class="font-weight-bold">Dough Weight:  {{ dough_weight }}
-                <br>Dough Hydration:  {{ dough_hydration_recipe }}%
-                </p>
-                <table class="table">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Ingredients</th>
-                      <th scope="col" class="text-right">Weight ({{ levain_units }}) </th>
-                      <th scope="col" class="text-right">Bakers Percentages</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row"><img src="https://img.icons8.com/android/24/000000/wheat.png"/> Flour</th>
-                      <td class="text-right"> {{ flour_total }}  </td>
-                      <td class="text-right">100%</td>
-                    </tr>  
-
-                    <tr>
-                      <th scope="row" class="text-muted text-center">Flour in Recipe</th>
-                      <td class="text-right">  {{  flour_qty_recipe }}  </td>
-                      <td class="text-right">  {{  flour_recipe_bakers_pct }}%</td>
-                    </tr>
-                                                  
-                    <tr>
-                      <th scope="row" class="text-muted text-center">Prefermented Flour</th>
-                      <td class="text-right">  {{  pff }}  </td>
-                      <td class="text-right">  {{  pff_bakers_pct }}%</td>
-                    </tr>
-                  
-                    <tr>
-                      <th scope="row"><img src="https://img.icons8.com/android/24/000000/water.png"/> Water</th>
-                      <td class="text-right">  {{ water_total }}  </td>
-                      <td class="text-right">  {{  water_bakers_pct }}%  </td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" class="text-muted text-center">Water in Recipe</th>
-                      <td class="text-right">  {{  water_qty_adjusted }}  </td>
-                      <td class="text-right">  {{  water_adjusted_bakers_pct }}%  </td>
-                    </tr>
-
-                    <tr>
-                      <th scope="row" class="text-muted text-center">Water in Levain</th>
-                      <td class="text-right">  {{  levain_water_adjusted }}  </td>
-                      <td class="text-right">  {{  levain_water_adjusted_bakers_pct }}%  </td>
-                    </tr>
-                    
-                    <tr>
-                      <th scope="row"><img src="https://img.icons8.com/material-sharp/24/000000/mason-jar.png"/> Levain ({{ levain_hyd_yours }}% hydration) </th>
-                      <td class="text-right">  {{  levain_qty_adjusted }}  </td>
-                      <td class="text-right">  {{  levain_adjusted_bakers_pct }}% </td>
-                    </tr>
-                  </tbody>
-                </table>
+                          <tr>
+                              <th><img src="https://img.icons8.com/ios-glyphs/30/000000/salt-shaker--v1.png"/> Salt</th>
+                              <td style="color:blue">{{  '%0.1f'| format(salt_pct|float) }}% </td>
+                              <td style="color:blue">{{ '%0.1f'| format(salt_mass|float) }}</td>
+                              <td colspan="2" style="background:gray"> </td>
+                              <td style="color:black;text-align:left">Salt</td>
+                              <td style="color:black">{{ '%0.1f'| format(salt_mass|float)  }}</td>
+                          </tr>
+                          <tr>
+                              <th><img src="https://img.icons8.com/material-rounded/24/000000/microorganisms.png"/> Yeast</th>
+                              <td style="color:blue">{{  '%0.1f'| format(yeast_pct|float) }}% </td>
+                              <td style="color:blue">{{ '%0.1f'| format(yeast_mass|float) }}</td>
+                              <td colspan="2" style="background:gray"> </td>
+                              <td style="color:black;text-align:left">Yeast</td>
+                              <td style="color:black">{{ '%0.1f'| format(yeast_mass|float)  }}</td>
+                          </tr>
+                          
+                          <tr>
+                            <th><img src="https://img.icons8.com/android/24/000000/hazelnut.png"/> Add-in</th>
+                            <td style="color:blue">{{  '%0.1f'| format(addin_pct|float)  }}% </td>
+                            <td style="color:blue">{{  '%0.1f'| format(addin_mass|float)  }}</td>
+                            <td colspan="2" style="background:gray"> </td>
+                            <td style="color:black;text-align:left">Add-in</td>
+                             <td style="color:black">{{ '%0.1f'| format(addin_mass|float)  }}</td>
+                          </tr> 
+                          
+                              <th><img src="https://img.icons8.com/material-sharp/24/000000/mason-jar.png"/> Sourdough</th>
+                              <td colspan="4" style="background:gray"> </td>
+                              <td style="color:black;text-align:left">Levain </td>
+                              <td style="color:black">{{ '%0.1f'| format(pf_mass|float)  }}</td>
+                          </tr>
+                      </tbody>
+                      <tfoot>
+                          <tr>
+                              <th>TOTALS</th>
+                              <td>{{  '%0.1f'| format(total_formula_pct|float) }}%</td>
+                              <td>{{ '%0.1f'| format(tdw|float) }} {{ units }}</td>
+                              <td>{{  '%0.1f'| format(pf_formula_pct|float) }}%</td>
+                              <td>{{ '%0.1f'| format(pf_mass|float) }} {{ units }}</td>
+                              <td></td>
+                              <td>{{ '%0.1f'| format(tdw|float) }} {{ units }}</td>
+                          </tr>
+                      </tfoot>
+                  </table>
                   
               </div>  
             </div> 

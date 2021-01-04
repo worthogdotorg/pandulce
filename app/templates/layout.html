@@ -1,6 +1,31 @@
 <!doctype html>
 <html lang="en">
+<!-- CSS tags for BBGA table -->
+  <style>
+    table, th, td {
+    border:solid 1px;
+    border-collapse:collapse;
+    table-layout:fixed;
+    padding:5px;
+    }    
+
+    tfoot tr:last-child {
+    background:salmon;
+    font-weight: bold;
+    }
     
+    tbody th {
+    text-align:left
+    }
+
+    td {
+    text-align:right
+    }
+
+  </style>
+
+
+
   <head>
     {% block head %}
     <!-- Required meta tags -->
@@ -77,8 +102,7 @@
         const $value = $('#customRange11');
         $valueSpan.html($value.val());
         $value.on('input change', () => {
-
-         $valueSpan.html($value.val());
+        $valueSpan.html($value.val());
         });
       });
     </script>
@@ -90,11 +114,190 @@
         const $value = $('#customRange12');
         $valueSpan.html($value.val());
         $value.on('input change', () => {
-
         $valueSpan.html($value.val());
         });
       });
     </script>
+
+    <script>
+      $(document).ready(function() {
+
+        const $valueSpan = $('.valueSpan4');
+        const $value = $('#customRange13');
+        $valueSpan.html($value.val());
+        $value.on('input change', () => {
+        $valueSpan.html($value.val());
+        });
+      });
+    </script>
+
+    <script>
+      $(document).ready(function() {
+        const $valueSpan = $('.valueSpan5');
+        const $value = $('#customRange14');
+        $valueSpan.html($value.val());
+        $value.on('input change', () => {
+        $valueSpan.html($value.val());
+        });
+      });
+    </script>
+    
+    <script>
+      $(document).ready(function() {
+        const $valueSpan = $('.valueSpan6');
+        const $value = $('#customRange15');
+        $valueSpan.html($value.val());
+        $value.on('input change', () => {
+        $valueSpan.html($value.val());
+        });
+      });
+    </script>
+
+    <script>
+      $(document).ready(function() {
+        const $valueSpan = $('.valueSpan7');
+        const $value = $('#customRange16');
+        $valueSpan.html($value.val());
+        $value.on('input change', () => {
+        $valueSpan.html($value.val());
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function() {
+        const $valueSpan = $('.valueSpan8');
+        const $value = $('#customRange17');
+        $valueSpan.html($value.val());
+        $value.on('input change', () => {
+        $valueSpan.html($value.val());
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function() {
+        const $valueSpan = $('.valueSpan9');
+        const $value = $('#customRange18');
+        $valueSpan.html($value.val());
+        $value.on('input change', () => {
+        $valueSpan.html($value.val());
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function() {
+        const $valueSpan = $('.valueSpan10');
+        const $value = $('#customRange19');
+        $valueSpan.html($value.val());
+        $value.on('input change', () => {
+        $valueSpan.html($value.val());
+        });
+      });
+    </script>
+
+<script>
+  $(function(){
+    $('input[name="flour1_pct"]').val(100);
+    $('input[name="flour2_pct"]').val(0);
+    $('input[name="flour3_pct"]').val(0);
+
+    $('input[name="flour1_pct"]').keyup(function(){
+      $('input[name="flour3_pct"]').val(0);
+      var text1Value = parseInt($('input[name="flour1_pct"]').val());
+
+      var text1Value = $('input[name="flour1_pct"]').val();
+      if(isNaN(text1Value))
+        {            
+        $('input[name="flour1_pct"]').val(100);
+        text1Value =100;
+        }
+      if(text1Value >=100)
+        {
+        $('input[name="flour1_pct"]').val(100);
+        $('input[name="flour2_pct"]').val(0);
+        $('input[name="flour3_pct"]').val(0);  
+        }
+      else
+        {
+        var total = 100 - text1Value;  
+        $('input[name="flour2_pct"]').val(total);
+        }
+    });  
+  $('input[name="flour2_pct"]').keyup(function(){
+      var text1Value = parseInt($('input[name="flour1_pct"]').val());
+      var text2Value = parseInt($('input[name="flour2_pct"]').val());
+  
+      if(isNaN(text2Value))
+      {
+      text2Value =0;
+      }
+      var total = text1Value + text2Value;
+  
+      if(total >=100)
+      {
+      $('input[name="flour2_pct"]').val(100-text1Value);
+      $('input[name="flour3_pct"]').val(0); 
+      }
+      else
+      {
+      $('input[name="flour3_pct"]').val(100-total);
+      var text3Value = parseInt($('input[name="flour3_pct"]').val());
+      }
+    });
+  });
+</script>
+
+<script>
+  $(function(){
+    $('input[name="pf1_flour1_pct"]').val(100);
+    $('input[name="pf1_flour2_pct"]').val(0);
+    $('input[name="pf1_flour3_pct"]').val(0);
+
+    $('input[name="pf1_flour1_pct"]').keyup(function(){
+      $('input[name="pf1_flour3_pct"]').val(0);
+      var text4Value = parseInt($('input[name="pf1_flour1_pct"]').val());
+
+      var text4Value = $('input[name="pf1_flour1_pct"]').val();
+      if(isNaN(text4Value))
+        {            
+        $('input[name="pf1_flour1_pct"]').val(100);
+        text4Value =100;
+        }
+      if(text4Value >=100)
+        {
+        $('input[name="pf1_flour1_pct"]').val(100);
+        $('input[name="pf1_flour2_pct"]').val(0);
+        $('input[name="pf1_flour3_pct"]').val(0);  
+        }
+      else
+        {
+        var total_pf1 = 100 - text4Value;  
+        $('input[name="pf1_flour2_pct"]').val(total_pf1);
+        }
+    });  
+  $('input[name="pf1_flour2_pct"]').keyup(function(){
+      var text4Value = parseInt($('input[name="pf1_flour1_pct"]').val());
+      var text5Value = parseInt($('input[name="pf1_flour2_pct"]').val());
+  
+      if(isNaN(text5Value))
+      {
+      text5Value =0;
+      }
+      var total_pf1 = text4Value + text5Value;
+  
+      if(total_pf1 >=100)
+      {
+      $('input[name="pf1_flour2_pct"]').val(100-text4Value);
+      $('input[name="pf1_flour3_pct"]').val(0); 
+      }
+      else
+      {
+      $('input[name="pf1_flour3_pct"]').val(100-total_pf1);
+      var text6Value = parseInt($('input[name="pf1_flour3_pct"]').val());
+      }
+    });
+  });
+</script>
+
     <!-- You will need to enter your own Tiny key here--mine only works on localhost and other approved domains -->
     <script src="https://cdn.tiny.cloud/1/2j22078ahdvf2onrpjleiz5oowrjsbu1pn6hdmk06ejx3ycv/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 

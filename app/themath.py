@@ -19,3 +19,6 @@ def sourdough_pct_adjust_fnc(levain_water, levain_hyd, dough_weight):
 
 def levain_water_adjusted(pff, hyd):
     return (pff * hyd)
+
+def ingredient_mass(ing_pct, flour_mass):
+    return (ing_pct * flour_mass / 100)

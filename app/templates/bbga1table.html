@@ -1,0 +1,172 @@
+{% extends 'layout.html' %}
+
+{% block app_content %}
+
+  <div class="container">
+      <div class="col">
+          <div class="card mt-5 border-0">
+              <div class="card-body">
+                  <h1>Baker's Percentage Table for {{ bbga_recipe_name }}</h1> 
+                  <p> {{ desc }}</p>
+                  <table table table-bordered table-striped>
+                    <thead>
+                        <tr style="background:GAINSBORO">
+                            <th colspan="1" style="background:gray"></th>
+                            <th colspan="2" class="text-normal" style="text-align:center">Total dough weight = {{ tdw }} {{ units }} </th>
+                            <th colspan="2" class="text-normal" style="text-align:center">Total flour prefermented = {{ pf1_pff_pct }}% </th>
+                            <td colspan="2" style="background:gray"></td>
+                        </tr>
+                        <tr>
+                            <th colspan="1" style="color:gray"></th>
+                            <th colspan="2" style="color:blue;text-align:center">TOTAL FORMULA</th>
+                            <th colspan="2" style="color:brown;text-align:center">PREFERMENT #1 - {{ pf1 }}</th>
+                            <th colspan="2" style="text-align:center">FINAL MIX</th>
+                        </tr>
+                        <tr style="background:salmon;text-align:center">
+                            <th colspan="1">Ingredients</th>
+                            <th colspan="1">%</th>
+                            <th colspan="1">{{  units  }}</th>
+                            <th colspan="1">%</th>
+                            <th colspan="1">{{  units  }}</th>
+                            <th colspan="1">Ingredients</th>
+                            <th colspan="1">{{  units  }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background:GAINSBORO">
+                            <th><img src="https://img.icons8.com/android/24/000000/wheat.png"/> Total Flour</th>
+                            <td style="color:blue">100% </td>
+                            <td style="color:blue">{{ '%0.1f'| format(flour_mass|float) }}</td>
+                            <td style="color:brown">100%</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_flour_mass|float) }}</td>
+                            <td colspan="2" style="background:gray"></td>
+                        </tr>
+                        <tr>
+                            <th style="text-align:right">All Purpose</th>
+                            <td style="color:blue">{{ footnote_apf }} {{ '%0.1f'| format(apf_pct|float) }}%</td>
+                            <td style="color:blue">{{ '%0.1f'| format(apf_mass|float) }}</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_apf_pct|float) }}%</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_apf_mass|float) }} </td>
+                            <td style="color:black;text-align:left">AP flour</td>
+                            <td style="color:black">{{ '%0.1f'| format(final_apf_mass|float)  }}</td>
+                        </tr>
+                        <tr>
+                            <th style="text-align:right">Bread</th>
+                            <td style="color:blue">{{ footnote_bread }} {{ '%0.1f'| format(bread_pct|float) }}%</td>
+                            <td style="color:blue">{{ '%0.1f'| format(bread_mass|float) }}</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_bread_pct|float) }}%</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_bread_mass|float) }} </td>
+                            <td style="color:black;text-align:left">Bread flour</td>
+                            <td style="color:black">{{ '%0.1f'| format(final_bread_mass|float)  }}</td>
+                        </tr>
+                        <tr>
+                            <th style="text-align:right">Whole Wheat</th>
+                            <td style="color:blue">{{ footnote_ww }} {{ '%0.1f'| format(ww_pct|float) }}%</td>
+                            <td style="color:blue">{{ '%0.1f'| format(ww_mass|float) }}</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_ww_pct|float) }}%</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_ww_mass|float) }} </td>
+                            <td style="color:black;text-align:left">WW flour</td>
+                            <td style="color:black">{{ '%0.1f'| format(final_ww_mass|float)  }}</td>
+                        </tr>
+                        <tr>
+                            <th style="text-align:right">Rye</th>
+                            <td style="color:blue">{{ footnote_rye }} {{ '%0.1f'| format(rye_pct|float) }}%</td>
+                            <td style="color:blue">{{ '%0.1f'| format(rye_mass|float) }}</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_rye_pct|float) }}%</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_rye_mass|float) }} </td>
+                            <td style="color:black;text-align:left">Rye flour</td>
+                            <td style="color:black">{{ '%0.1f'| format(final_rye_mass|float)  }}</td>
+                        </tr>
+                        <tr>
+                            <th style="text-align:right">Other</th>
+                            <td style="color:blue">{{ footnote_other }} {{ '%0.1f'| format(other_pct|float) }}%</td>
+                            <td style="color:blue">{{ '%0.1f'| format(other_mass|float) }}</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_other_pct|float) }}%</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_other_mass|float) }} </td>
+                            <td style="color:black;text-align:left">Other flour</td>
+                            <td style="color:black">{{ '%0.1f'| format(final_other_mass|float) }}</td>
+                        </tr>
+                        
+                        <tr>
+                            <th><img src="https://img.icons8.com/android/24/000000/water.png"/> Water</th>
+                            <td style="color:blue">{{ '%0.1f'| format(water_pct|float) }}% </td>
+                            <td style="color:blue">{{ '%0.1f'| format(water_mass|float) }}</td>
+                            <td style="color:brown">{{ pf1_water_pct }}%</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_water_mass|float) }} </td>
+                            <td style="color:black;text-align:left">Water</td>
+                            <td style="color:black">{{ '%0.1f'| format(final_water_mass|float)  }}</td>
+                        </tr>                        
+                        
+                        <tr>
+                            <th><img src="https://img.icons8.com/ios-glyphs/30/000000/salt-shaker--v1.png"/> Salt</th>
+                            <td style="color:blue">{{ '%0.1f'| format(salt_pct|float) }}% </td>
+                            <td style="color:blue">{{ '%0.1f'| format(salt_mass|float) }}</td>
+                            <td colspan="2" style="background:gray"> </td>
+                            <!--<td style="color:brown">{{ pf1_salt_pct }}%</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_salt_mass|float) }} </td> -->
+                            <td style="color:black;text-align:left">Salt</td>
+                            <td style="color:black">{{ '%0.1f'| format(final_salt_mass|float)  }}</td>
+                        </tr>
+                        
+                        <tr>
+                            <th><img src="https://img.icons8.com/material-rounded/24/000000/microorganisms.png"/> Yeast</th>
+                            <td style="color:blue">{{ footnote_yeast }} {{ '%0.1f'| format(yeast_pct|float) }}% </td>
+                            <td style="color:blue">{{ '%0.1f'| format(yeast_mass|float) }}</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_yeast_pct|float) }}%</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_yeast_mass|float) }} </td>
+                            <td style="color:black;text-align:left">Yeast</td>
+                            <td style="color:black">{{ '%0.1f'| format(final_yeast_mass|float)  }}</td>
+                        </tr>
+                        <tr>
+                          <th><img src="https://img.icons8.com/android/24/000000/hazelnut.png"/> Add-in</th>
+                          <td style="color:blue">{{  '%0.1f'| format(addin_pct|float)  }}% </td>
+                          <td style="color:blue">{{  '%0.1f'| format(addin_mass|float)  }}</td>
+                          <td colspan="2" style="background:gray"> </td>
+                          <td style="color:black;text-align:left">Add-in</td>
+                           <td style="color:black">{{ '%0.1f'| format(addin_mass|float)  }}</td>
+                        </tr> 
+                        <tr>
+                          <th><img src="https://img.icons8.com/material-sharp/24/000000/seed-of-life.png"/> Seed</th>
+                          <td style="color:blue">{{ '%0.1f'| format(total_seed_pct|float)  }}% </td>
+                          <td style="color:blue">{{  '%0.1f'| format(pf1_seed_mass|float)  }}</td>
+                          <td style="color:brown"> {{ '%0.1f'| format(pf1_seed_pct|float) }}%</td>
+                          <td style="color:brown"> {{ '%0.1f'| format(pf1_seed_mass|float) }}</td>
+                          <td colspan="2" style="background:gray"> </td>
+                        </tr>
+                         <tr>
+                            <th><img src="https://img.icons8.com/material-sharp/24/000000/mason-jar.png"/> {{ pf1 }}</th>
+                            <td colspan="4" style="background:gray"> </td>
+                            <td style="color:black;text-align:left">{{ pf1 }} </td>
+                            <td style="color:black">{{ '%0.1f'| format(pf1_mass|float)  }}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>TOTALS</th>
+                            <td>{{  '%0.1f'| format(total_formula_pct|float) }}%</td>
+                            <td>{{ tdw }} {{ units }}</td>
+                            <td>{{  '%0.1f'| format(pf1_formula_pct|float) }}%</td>
+                            <td>{{ '%0.1f'| format(pf1_mass|float) }} {{ units }}</td>
+                            <td></td>
+                            <td>{{ tdw }} {{ units }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <p style="color:blue">
+                {{ footnote_flour_text }}
+                <br>{{ footnote_yeast_text }}    
+                </p>
+                </div>
+           </div>
+      </div>
+
+      <div class="row">
+        <div class="container mt-4">      
+          <center>
+              <button class="btn btn-secondary hidden-print" onclick="myFunction()"><img src="https://img.icons8.com/fluent-systems-filled/24/000000/print.png"/></span> Print</button>
+          </center>   
+        </div>
+      </div>
+  </div>  
+   
+{% endblock %}

@@ -1,0 +1,49 @@
+
+.col-md-4,.col-md-2 {
+    background-color: #e3e3e3;
+    }
+
+.bg {
+    position: relative; 
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg::before {    
+      content: "";
+      background-image: url("./NSRW_Rye_and_other_Grains_blurredxx.png"); 
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+
+
+}
+
+.flourimage { 
+    position: relative; 
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("~/static/NSRW_Rye_and_other_Grains_blurred.png"); 
+    background-size: cover;
+
+    
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+
+    }
+}
+      

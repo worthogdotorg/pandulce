@@ -1,0 +1,127 @@
+{% extends "layout.html" %}
+
+{% block app_content %}
+
+    <div class="formwrapper">
+                
+        <form method="post" action="">
+            
+            {{ form.csrf_token }}
+            
+            <div class="container">
+                
+                <div class="row mt-5"></div>  
+                <div class="row mt-5">  
+                    <div class="col">
+                        <div class="card mt-1 border-0">
+                            <div class="card-body">
+                                <h1>Bakers Percentages Levain Calculator</h1>
+                                <p>Enter values from your recipe and I will compute dough hydration and bakers percentages.  If your own levain (mother, starter, preferment, ...) hydration percentage differs from the recipe, then enter that as well using the slidebar and I will calculate the levain and water quantities which maintain the prefermented flour in the recipe.  
+                            </div>
+                        </div>
+                    </div>  
+                </div>   
+       
+                <div class="row">
+                    <div class="col-md-4">    
+                        <div class="card mt-1">
+                            <h3 class="card-header">Recipe</h3>
+                                <div class="card-body font-weight-normal">
+                                    <ul class="list-group list-group-flush">                             
+                                        <li  class="list-group-item">{{ wtf.form_field(form.units) }}
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" class="custom-control-input" name="units" id="weightunitsg" value="gm" checked>
+                                                <label class="custom-control-label" for="weightunitsg">Grams</label>
+                                            </div>
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" class="custom-control-input" name="units" id="weightunitso" value="oz">
+                                                <label class="custom-control-label" for="weightunitso">Ounces</label>
+                                            </div>  
+                                        </li>           
+
+
+                                        <li  class="list-group-item">
+                                            <div class="form-group">
+                                                <label for="recipe_flour" class="col-form-label"><img src="https://img.icons8.com/android/24/000000/wheat.png"/> Flour weight</label>
+                                                <input type="number" class="form-control" id="recipe_flour" name="recipe_flour_mass" value=600>  
+                                            </div>
+                                        </li>
+                                        <li  class="list-group-item">
+                                            <div class="form-group">
+                                                <label for="recipe_water" class="col-form-label"><img src="https://img.icons8.com/android/24/000000/water.png"/> Water weight</label>
+                                                <input type="number" class="form-control" id="recipe_water" name="recipe_water_mass" value=340>  
+                                            </div>
+                                        </li>
+                                        <li  class="list-group-item">
+                                            <div class="form-group">
+                                                <label for="recipe_flour" class="col-form-label"><img src="https://img.icons8.com/android/24/000000/wheat.png"/> Salt weight</label>
+                                                <input type="number" class="form-control" id="recipe_salt" name="recipe_salt_mass" value=11>  
+                                            </div>
+                                        </li>
+                                        <li  class="list-group-item">
+                                            <div class="form-group">
+                                                <label for="recipe_yeast" class="col-form-label"><img src="https://img.icons8.com/android/24/000000/water.png"/> Yeast weight</label>
+                                                <input type="number" class="form-control" id="recipe_yeast" name="recipe_yeast_mass" value=1>  
+                                            </div>
+                                        </li>
+                                        <li  class="list-group-item">
+                                            <div class="form-group">
+                                                <label for="recipe_addin" class="col-form-label"><img src="https://img.icons8.com/android/24/000000/hazelnut.png"/> Add-in weight</label>
+                                                <input type="number" class="form-control" id="recipe_addin" name="recipe_addin_mass" value=0>  
+                                            </div>
+                                        </li>
+                                        <li  class="list-group-item"> 
+                                            <div class="form-group">
+                                                <label for="levain" class="col-form-label"><img src="https://img.icons8.com/material-sharp/24/000000/mason-jar.png"/> Starter weight</label>
+                                                <input type="number" class="form-control" id="levain" name="recipe_levain_mass" value=180>  
+                                            </div>
+                                        </li>
+
+                                        <li  class="list-group-item"> 
+                                            <div class="form-group d-flex">
+                                                <div class="w-100">
+                                                    <label for="customRange11" class="col-form-label"><a href="#" data-toggle="tooltip" title="Enter the levain hydration percentage from the recipe. ">Recipe levain hydration (%)</a></label>
+                                                    <input type="range" class="custom-range" id="customRange11" min="50" max="150" value="100" step="5" name="levain_hyd_recipe">
+                                                    <span class="font-weight-normal text-normal valueSpan2"></span>
+                                                </div>
+                                             </div>
+                                        </li>
+
+                                        
+                                        
+                                    </ul>
+                            </div>
+                        </div>    
+                    </div>
+                
+                    <div class="col-md-4">
+                        <div class="card mt-1">
+                            <h3 class="card-header">Your Levain</h3>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush font-weight-normal">
+                                    
+                                    <li  class="list-group-item"> 
+                                        <div class="form-group d-flex">
+                                            <div class="w-100">
+                                                <label for="customRange12" class="col-form-label"><a href="#" data-toggle="tooltip" title="Enter your levain hydration percentage. 100% is equal parts flour and water in the feeding. If you are not sure, click on Help.">Levain hydration (%)</a></label>
+                                                <input type="range" class="custom-range" id="customRange12" min="50" max="150" value="100" step="5" name="levain_hyd_yours">
+                                                <span class="font-weight-normal text-normal valueSpan3"></span>
+                                            </div>
+                                         </div>
+                                    </li>
+    
+                                    <li  class="list-group-item"><input type="submit" class="btn btn-primary btn-lg btn-block" value="Calculate"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            
+            </div>
+        </form>
+         
+    </div>  
+
+{% endblock %}
+

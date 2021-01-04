@@ -1,14 +1,16 @@
 from flask import Flask
+from flask_wtf.csrf import CSRFProtect
 from flask_bootstrap import Bootstrap
 from config import Config
 from logging.handlers import RotatingFileHandler
 import logging
 import os
 
-#-- app = Flask(__name__, template_folder="templates") 
-# def create_app(config_class=Config):
+csrf = CSRFProtect()
 app = Flask(__name__)
 app.config.from_object(Config)
+
+csrf.init_app(app)
 
 bootstrap = Bootstrap(app)
 
@@ -25,6 +27,5 @@ bootstrap = Bootstrap(app)
 #
 #    app.logger.setLevel(logging.INFO)
 #    app.logger.info('Bread startup')
-
 
 from app import routes

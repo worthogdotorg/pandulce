@@ -1,0 +1,59 @@
+<script>
+    $(function(){
+      $('input[name="pf1_flour1_pct"]').val(100);
+      $('input[name="pf1_flour2_pct"]').val(0);
+      $('input[name="pf1_flour3_pct"]').val(0);
+
+      $('input[name="pf1_flour1_pct"]').keyup(function(){
+        $('input[name="pf1_flour3_pct"]').val(0);
+        var text4Value = parseInt($('input[name="pf1_flour1_pct"]').val());
+
+        var text4Value = $('input[name="pf1_flour1_pct"]').val();
+        if(isNaN(text4Value))
+          {            
+          $('input[name="pf1_flour1_pct"]').val(100);
+          text4Value =100;
+          }
+        
+        if(text4Value >=100)
+          {
+          $('input[name="pf1_flour1_pct"]').val(100);
+          $('input[name="pf1_flour2_pct"]').val(0);
+          $('input[name="pf1_flour3_pct"]').val(0);  
+          }
+        else
+          {
+          var total_pf1 = 100 - text4Value;  
+          $('input[name="pf1_flour2_pct"]').val(total_pf1);
+          }
+      });  
+      
+ 
+    $('input[name="pf1_flour2_pct"]').keyup(function(){
+        var text4Value = parseInt($('input[name="pf1_flour1_pct"]').val());
+        var text5Value = parseInt($('input[name="pf1_flour2_pct"]').val());
+    
+        if(isNaN(text5Value))
+        {
+        text5Value =0;
+        }
+        var total_pf1 = text4Value + text5Value;
+    
+        if(total_pf1 >=100)
+        {
+        
+        $('input[name="pf1_flour2_pct"]').val(100-text4Value);
+        $('input[name="pf1_flour3_pct"]').val(0);
+          
+        }
+        else
+        {
+        
+        $('input[name="pf1_flour3_pct"]').val(100-total_pf1);
+        var text6Value = parseInt($('input[name="pf1_flour3_pct"]').val());
+        }
+      });
+    
+    
+    });
+  </script>

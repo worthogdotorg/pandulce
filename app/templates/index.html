@@ -4,17 +4,29 @@
 
     <div class="formwrapper">
                 
-        <form method="post" action="" 
+        <form method="post" action="">
+            {{ form.csrf_token }}
             
             <div class="container">
                 
-                <div class="row mt-5"></div>  
                 <div class="row mt-5">  
                     <div class="col">
                         <div class="card mt-1 border-0">
                             <div class="card-body">
-                                <h1>Bakers Percentages Levain Calculator</h1>
-                                <p>Enter values from your recipe and I will compute dough hydration and bakers percentages.  If your own levain (mother, starter, preferment, ...) hydration percentage differs from the recipe, then enter that as well using the slidebar and I will calculate the levain and water quantities which maintain the prefermented flour in the recipe.  
+                                <h1>Baker's Percentage Calculator</h1>
+                                <p>If you would rather calculate baker's percentages using weight/mass, <a href="breadcalc.html">click here.</a></p>
+                                <p>This calculator is <em>inspired by</em> <a href="https://www.bbga.org/files/2009FormulaFormattingSINGLES.pdf" target="_blank">The Bread Bakers Guild of America Formula Layout Standards</a>, Part I, Diagram 3.  Usage is simple:
+                                <ol>
+                                    <li>Enter total dough weight and formula percentages in the Total Formula column.</li>
+                                    <li>If you are using a preferment, select the preferment type and data points.  
+                                        <ul>
+                                            <li>If you are not using a preferment, select "None (straight dough)" under Preferment Type.</li>
+                                            <li>If you have an amount of flour or yeast that's not included in the Total Formula, I will recalculate  total formula figures which include ingredients in the preferment.</li>
+                                            <li>Seed percentage can be confusing. The default values show 3% seed and 30% of flour prefermented.  That means that the preferment would contain 10% seed (10% of 30% = 3%). For further clarification, read the <a href="https://www.bbga.org/files/2009FormulaFormattingSINGLES.pdf" target="_blank">BBGA documentation</a> or click on Help for more information. </li>
+                                            <li>But if hydration levels in the preferment are too high for the total formula dough hydration level (final dough has a negative water amount), I will flash a message and bring you right back to this screen.</li>
+                                        </ul>
+                                    <li>Click on <b>Calculate</b> to see the Baker's Percentage table.</li>                                        
+                                </ol>    
                             </div>
                         </div>
                     </div>  
@@ -23,52 +35,99 @@
                 <div class="row">
                     <div class="col-md-4">    
                         <div class="card mt-1">
-                            <h3 class="card-header">Recipe</h3>
+                            <h3 class="card-header">Total Formula</h3>
                                 <div class="card-body font-weight-normal">
                                     <ul class="list-group list-group-flush">                             
-                                        <li  class="list-group-item">{{ wtf.form_field(form.levain_units_calc) }}
+                                        <li  class="list-group-item">
+                                            <input class="form-control" type="text" placeholder="Recipe name" name="bbga_recipe_name" value="Your Recipe Name"></li>
+                                        <li  class="list-group-item">{{ wtf.form_field(form.units) }}
                                             <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" class="custom-control-input" name="levain_units_calc" id="weightunitsg" value="gm" checked>
+                                                <input type="radio" class="custom-control-input" name="units" id="weightunitsg" value="gm" checked>
                                                 <label class="custom-control-label" for="weightunitsg">Grams</label>
                                             </div>
                                             <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" class="custom-control-input" name="levain_units_calc" id="weightunitso" value="oz">
-                                                <label class="custom-control-label" for="weightunitso">Ounces</label>
+                                                <input type="radio" class="custom-control-input" name="units" id="weightunitso" value="kg">
+                                                <label class="custom-control-label" for="weightunitso">Kilograms</label>
                                             </div>  
-                                        </li>           
-
+                                            <br>
+                                            <div class="form-group">
+                                                <label for="tdw" class="col-form-label mt-2"><img src="https://img.icons8.com/material-rounded/24/000000/scales.png"/> Total Dough Weight (TDW)</label>
+                                                <input type="number" class="form-control" id="tdw" name="tdw" value=1000>  
+                                            </div>
+                                        </li>
 
                                         <li  class="list-group-item">
-                                            <div class="form-group">
-                                                <label for="flour" class="col-form-label"><img src="https://img.icons8.com/android/24/000000/wheat.png"/> Flour weight</label>
-                                                <input type="number" class="form-control" id="flour" name="flour_qty_recipe" value=600>  
+                                            <img src="https://img.icons8.com/android/24/000000/wheat.png"/> Flour types and %
+                                         
+                                            <div class="input-group mt-1">
+                                                <select id="flour1_type" name="flour1_type" class="form-control">
+                                                    <option>APF</option>
+                                                    <option>Bread</option>
+                                                    <option>Whole wheat</option>
+                                                    <option>Rye</option>
+                                                    <option>Other</option>
+                                                </select>
+                                                <input type="integer" class="form-control" placeholder="Flour 1 pct" value=100 name="flour1_pct"/>
                                             </div>
+                                            <div class="input-group">
+                                                <select id="flour2_type" name="flour2_type" class="form-control">
+                                                    <option>Bread</option>
+                                                    <option>APF</option>
+                                                    <option>Whole wheat</option>
+                                                    <option>Rye</option>
+                                                    <option>Other</option>
+                                                </select>
+                                                <input type="integer" class="form-control" placeholder="Flour 2 pct" value=0 name="flour2_pct"/>
+                                            </div>
+                                            <div class="input-group">
+                                                <select id="flour3_type" name="flour3_type" class="form-control">
+                                                    <option>Whole wheat</option>
+                                                    <option>APF</option>
+                                                    <option>Bread</option>
+                                                    <option>Rye</option>
+                                                    <option>Other</option>
+                                                </select>
+                                                <input type="integer" readonly class="form-control" placeholder="Flour 3 pct" value=0 name="flour3_pct"/>
+                                            </div>
+                                            
                                         </li>
                                         <li  class="list-group-item">
-                                            <div class="form-group">
-                                                <label for="water" class="col-form-label"><img src="https://img.icons8.com/android/24/000000/water.png"/> Water weight</label>
-                                                <input type="number" class="form-control" id="water" name="water_qty_recipe" value=340>  
-                                            </div>
-                                        </li>
-                                        <li  class="list-group-item"> 
-                                            <div class="form-group">
-                                                <label for="levain" class="col-form-label"><img src="https://img.icons8.com/material-sharp/24/000000/mason-jar.png"/> Levain weight</label>
-                                                <input type="number" class="form-control" id="levain" name="levain_qty_recipe" value=225>  
-                                            </div>
-                                        </li>
-
-                                        <li  class="list-group-item"> 
                                             <div class="form-group d-flex">
                                                 <div class="w-100">
-                                                    <label for="customRange11" class="col-form-label"><a href="#" data-toggle="tooltip" title="Enter the levain hydration percentage from the recipe. ">Recipe levain hydration (%)</a></label>
-                                                    <input type="range" class="custom-range" id="customRange11" min="50" max="150" value="100" step="5" name="levain_hyd_recipe">
-                                                    <span class="font-weight-normal text-normal valueSpan2"></span>
+                                                    <label for="customRange12" class="col-form-label"><a href="#" data-toggle="tooltip" title="Enter dough hydration level."><img src="https://img.icons8.com/android/24/000000/water.png"/> Dough hydration pct (%)</a></label>
+                                                    <input type="range" class="custom-range" id="customRange12" min="50" max="150" value="56" step="1" name="water_pct">
+                                                    <span class="font-weight-normal text-normal valueSpan3"></span>
                                                 </div>
-                                             </div>
+                                            </div>
                                         </li>
-
-                                        
-                                        
+                                        <li  class="list-group-item">                                           
+                                            <div class="form-group d-flex">
+                                                <div class="w-100">
+                                                    <label for="customRange13" class="col-form-label"><a href="#" data-toggle="tooltip" title="Enter salt percentage."><img src="https://img.icons8.com/ios-glyphs/30/000000/salt-shaker--v1.png"/> Salt pct (%)</a></label>
+                                                    <input type="range" class="custom-range" id="customRange13" min="0" max="15" value="2" step="0.1" name="salt_pct">
+                                                    <span class="font-weight-normal text-normal valueSpan4"></span>
+                                                </div>
+                                            </div>                                            
+                                        </li>
+                                        <li  class="list-group-item">                                           
+                                            <div class="form-group d-flex">
+                                                <div class="w-100">
+                                                    <label for="customRange14" class="col-form-label"><a href="#" data-toggle="tooltip" title="If total yeast exceeds that in the preferment, the final mix will have some yeast added."><img src="https://img.icons8.com/material-rounded/24/000000/microorganisms.png"/> Yeast pct (%)</a></label>
+                                                    <input type="range" class="custom-range" id="customRange14" min="0" max="5" value="0" step="0.1" name="yeast_pct">
+                                                    <span class="font-weight-normal text-normal valueSpan5"></span>
+                                                </div>
+                                            </div>                                            
+                                        </li>
+                                        <li  class="list-group-item">                                           
+                                            <div class="form-group d-flex">
+                                                <div class="w-100">
+                                                    <label for="customRange15" class="col-form-label"><a href="#" data-toggle="tooltip" title="Enter add-in percentage."><img src="https://img.icons8.com/android/24/000000/hazelnut.png"/> Add-in pct (%)</a></label>
+                                                    <input type="range" class="custom-range" id="customRange15" min="0" max="20" value="0" step="0.5" name="addin_pct">
+                                                    <span class="font-weight-normal text-normal valueSpan6"></span>
+                                                </div>
+                                            </div>                                            
+                                        </li>
+                                                                         
                                     </ul>
                             </div>
                         </div>    
@@ -76,21 +135,105 @@
                 
                     <div class="col-md-4">
                         <div class="card mt-1">
-                            <h3 class="card-header">Your Levain</h3>
+                            <h3 class="card-header">Preferment #1 (PF1)</h3>
                             <div class="card-body">
+                                <h4>Preferment Type</h4>
                                 <ul class="list-group list-group-flush font-weight-normal">
-                                    
+                                    <li  class="list-group-item">                                         
+                                        <div class="form-group">
+                                            <select class="form-control" name="pf1">
+                                                <option>Sourdough Levain</option>
+                                                <option>Poolish</option>
+                                                <option>Biga</option>
+                                                <option>None (straight dough)</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li  class="list-group-item">
+                                        <div class="form-group d-flex">
+                                            <div class="w-100">
+                                                <label for="customRange11" class="col-form-label"><a href="#" data-toggle="tooltip" title="Enter perfermented flour percentage.">Total flour prefermented (%)</a></label>
+                                                <input type="range" class="custom-range" id="customRange11" min="1" max="75" value="30" step="1" name="pf1_pff_pct">
+                                                <span class="font-weight-normal text-normal valueSpan2"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li  class="list-group-item">
+                                        <img src="https://img.icons8.com/android/24/000000/wheat.png"/> PF1 flour types and %
+                                      
+                                        <div class="input-group mt-1">
+                                            <select id="flour1_str_type" name="pf1_flour1_type" class="form-control" placeholder="Flour 1 type">
+                                                <option>APF</option>
+                                                <option>Whole wheat</option>
+                                                <option>Rye</option>
+                                                <option>Bread</option>
+                                                <option>Other</option>
+                                            </select>
+                                            <input type="text" class="form-control" placeholder="Flour 1 pct" value="100" name="pf1_flour1_pct"/>
+                                        </div>
+                                        <div class="input-group">
+                                            <select id="flour2_str_type" name="pf1_flour2_type" class="form-control" placeholder="Flour 2 type">                                                
+                                                <option>Whole wheat</option>
+                                                <option>Rye</option>
+                                                <option>APF</option>
+                                                <option>Bread</option>
+                                                <option>Other</option>
+                                            </select>
+                                            <input type="text" class="form-control" placeholder="Flour 2 pct" name="pf1_flour2_pct"/>
+                                        </div>
+                                        <div class="input-group">
+                                            <select id="flour3_str_type" name="pf1_flour3_type" class="form-control" placeholder="Flour 3 type">
+                                                <option>Rye</option>
+                                                <option>Bread</option>
+                                                <option>Whole wheat</option>
+                                                <option>APF</option>
+                                                <option>Other</option>
+                                            </select>
+                                            <input type="text" readonly class="form-control" placeholder="Flour 3 pct" name="pf1_flour3_pct"/>
+                                        </div>
+                                    </li>    
+
+                                    <li class="list-group-item">
+                                        <div class="form-group d-flex">
+                                            <div class="w-100">
+                                                <label for="customRange16" class="col-form-label"><a href="#" data-toggle="tooltip" title="Enter PF1 hydration percentage as a percentage of flour in the preferment."><img src="https://img.icons8.com/android/24/000000/water.png"/> PF1 water pct (%)</a></label>
+                                                    <input type="range" class="custom-range" id="customRange16" min="50" max="150" value="100" step="1" name="pf1_water_pct">
+                                                    <span class="font-weight-normal text-normal valueSpan7"></span></div>
+                                        </div>
+                                    </li>
+                                    <!--
+                                    <li  class="list-group-item">                                           
+                                        <div class="form-group d-flex">
+                                            <div class="w-100">
+                                                <label for="customRange19" class="col-form-label"><a href="#" data-toggle="tooltip" title="Enter PF1 salt percentage."><img src="https://img.icons8.com/ios-glyphs/30/000000/salt-shaker--v1.png"/> PF1 salt pct (%)</a></label>
+                                                <input type="range" class="custom-range" id="customRange19" min="0" max="15" value="0" step="0.1" name="pf1_salt_pct">
+                                                <span class="font-weight-normal text-normal valueSpan10"></span>
+                                            </div>
+                                        </div>                                            
+                                    </li>
+                                    --> 
+                                    <li  class="list-group-item">
+                                        <div class="form-group d-flex">
+                                            <div class="w-100">
+                                                <label for="customRange18" class="col-form-label"><a href="#" data-toggle="tooltip" title="Enter yeast as a percentage of the flour in the preferment."><img src="https://img.icons8.com/material-rounded/24/000000/microorganisms.png"/> PF1 yeast pct (%)</a></label>
+                                                <input type="range" class="custom-range" id="customRange18" min="0" max="10" value="0" step="0.1" name="pf1_yeast_pct">
+                                                <span class="font-weight-normal text-normal valueSpan9"></span>
+                                            </div>
+                                        </div>
+                                    </li>  
                                     <li  class="list-group-item"> 
                                         <div class="form-group d-flex">
                                             <div class="w-100">
-                                                <label for="customRange12" class="col-form-label"><a href="#" data-toggle="tooltip" title="Enter your levain hydration percentage. 100% is equal parts flour and water in the feeding. If you are not sure, click on Help.">Levain hydration (%)</a></label>
-                                                <input type="range" class="custom-range" id="customRange12" min="50" max="150" value="100" step="5" name="levain_hyd_yours">
-                                                <span class="font-weight-normal text-normal valueSpan3"></span>
+                                                <label for="customRange17" class="col-form-label"><a href="#" data-toggle="tooltip" title="Enter PF1 levain seed percentage as a percentage of TOTAL FLOUR."><img src="https://img.icons8.com/material-sharp/24/000000/seed-of-life.png"/> PF1 seed pct (%)</a></label>
+                                                <input type="range" class="custom-range" id="customRange17" min="0" max="25" value="3" step="0.1"" name="pf1_seed_pct">
+                                                <span class="font-weight-normal text-normal valueSpan8"></span>
                                             </div>
-                                         </div>
-                                    </li>
-    
+                                        </div>   
+                                    </li>    
                                     <li  class="list-group-item"><input type="submit" class="btn btn-primary btn-lg btn-block" value="Calculate"></li>
+                                    <!-- <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> -->
+
+                                    
                                 </ul>
                             </div>
                         </div>

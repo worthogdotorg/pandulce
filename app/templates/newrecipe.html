@@ -3,7 +3,8 @@
 {% block app_content %}
 
     <div class="formwrapper"> 
-        <form method="POST" action="" 
+        <form method="POST" action="">
+            {{ form.csrf_token }}
             <div class="container">
                 
                 <div class="row mt-5">
