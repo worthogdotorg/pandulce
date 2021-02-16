@@ -1,4 +1,4 @@
-Here are the steps that I took to add the Gunicorn WSGI server and then build the container image for deployment to Azure Web App for Containers.  I leaned heavily on [this excellent blog post ](https://mikepfeiffer.io/blog/azure-docker-containers) for the deployment steps.
+Here are the steps that I took to add the Gunicorn WSGI server and then build the container image for deployment to Azure Web App for Containers.  I leaned heavily on [this excellent blog post ](https://medium.com/cloudskills/build-run-and-continuously-deploy-docker-containers-on-azure-app-service-83974329e9d6) for the deployment steps.
 
 1. Create requirements.txt from Pipfile. (I used PIPENV for development, but there was a lot more documentation about using PIP for deployment so that's the road that I took.)
     * pipenv lock -r > requirements.txt
