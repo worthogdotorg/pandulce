@@ -14,16 +14,16 @@
                         <div class="card mt-1 border-0">
                             <div class="card-body">
                                 <h1>Baker's Percentage Calculator</h1>
-                                <p>If you would rather calculate baker's percentages using weight/mass, <a href="breadcalc.html">click here.</a></p>
-                                <p>This calculator is <em>inspired by</em> <a href="https://www.bbga.org/files/2009FormulaFormattingSINGLES.pdf" target="_blank">The Bread Bakers Guild of America Formula Layout Standards</a>, Part I, Diagram 3.  Usage is simple:
+                                <p>This calculator uses total dough weight and ingredient percentages as input.  If you would rather calculate baker's percentages using ingredients weights, <a href="breadcalc">click here.</a></p>
+                                <p>My baker's percentage calculator is <em>inspired by</em> <a href="https://www.bbga.org/files/2009FormulaFormattingSINGLES.pdf" target="_blank">The Bread Bakers Guild of America Formula Layout Standards</a>, Part I, Diagram 3.  Usage is simple:
                                 <ol>
                                     <li>Enter total dough weight and formula percentages in the Total Formula column.</li>
+                                    <li>If you are not using a preferment, select "None (straight dough)" under Preferment Type.</li>
                                     <li>If you are using a preferment, select the preferment type and data points.  
                                         <ul>
-                                            <li>If you are not using a preferment, select "None (straight dough)" under Preferment Type.</li>
-                                            <li>If you have an amount of flour or yeast that's not included in the Total Formula, I will recalculate  total formula figures which include ingredients in the preferment.</li>
-                                            <li>Seed percentage can be confusing. The default values show 3% seed and 30% of flour prefermented.  That means that the preferment would contain 10% seed (10% of 30% = 3%). For further clarification, read the <a href="https://www.bbga.org/files/2009FormulaFormattingSINGLES.pdf" target="_blank">BBGA documentation</a> or click on Help for more information. </li>
-                                            <li>But if hydration levels in the preferment are too high for the total formula dough hydration level (final dough has a negative water amount), I will flash a message and bring you right back to this screen.</li>
+                                            <li>If you have an amount of flour, salt or yeast that's not included in the Total Formula, I will recalculate  total formula figures which include ingredients in the preferment.</li>
+                                            <li>Seed percentage can be confusing. The default values show 3% seed and 30% of flour prefermented.  This would mean that your preferment has 10% sourdough inoculant (10% of 30% = 3%). For further clarification, read the <a href="https://www.bbga.org/files/2009FormulaFormattingSINGLES.pdf" target="_blank">BBGA documentation</a> or click on Help for more information. </li>
+                                            <li>If hydration levels in the preferment are too high for the total formula dough hydration level (final dough has a negative water amount), I will flash a message and bring you right back to this screen.</li>
                                         </ul>
                                     <li>Click on <b>Calculate</b> to see the Baker's Percentage table.</li>                                        
                                 </ol>    
@@ -142,9 +142,8 @@
                                     <li  class="list-group-item">                                         
                                         <div class="form-group">
                                             <select class="form-control" name="pf1">
-                                                <option>Sourdough Levain</option>
-                                                <option>Poolish</option>
-                                                <option>Biga</option>
+                                                <option>Sourdough levain</option>
+                                                <option>Yeasted</option>
                                                 <option>None (straight dough)</option>
                                             </select>
                                         </div>
@@ -201,7 +200,7 @@
                                                     <span class="font-weight-normal text-normal valueSpan7"></span></div>
                                         </div>
                                     </li>
-                                    <!--
+
                                     <li  class="list-group-item">                                           
                                         <div class="form-group d-flex">
                                             <div class="w-100">
@@ -211,7 +210,7 @@
                                             </div>
                                         </div>                                            
                                     </li>
-                                    --> 
+
                                     <li  class="list-group-item">
                                         <div class="form-group d-flex">
                                             <div class="w-100">

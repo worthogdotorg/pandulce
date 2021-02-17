@@ -54,7 +54,7 @@ class bbga1input(FlaskForm):
     yeast_pct = FloatField('Yeast pct', validators=[InputRequired(), NumberRange(0,10)])
     addin_pct = FloatField('Addin pct', validators=[InputRequired(), NumberRange(0,50)])
     # Preferment #1
-    #pf1_salt_pct = FloatField('Salt pct', validators=[InputRequired(), NumberRange(0,20)])
+    pf1_salt_pct = FloatField('Salt pct', validators=[InputRequired(), NumberRange(0,20)])
     pf1_yeast_pct = FloatField('Yeast pct', validators=[InputRequired(), NumberRange(0,10)])
     pf1_seed_pct = IntegerField('Seed pct', validators=[InputRequired(), NumberRange(0,50)])
     pf1 = TextAreaField(validators=[InputRequired()])

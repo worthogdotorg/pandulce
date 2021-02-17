@@ -205,11 +205,12 @@
       var text1Value = parseInt($('input[name="flour1_pct"]').val());
 
       var text1Value = $('input[name="flour1_pct"]').val();
-      if(isNaN(text1Value))
+      if(isNaN(text1Value) || text1Value === '' || text1Value === ' ' || text1Value === undefined)
         {            
-        $('input[name="flour1_pct"]').val(100);
-        text1Value =100;
+        $('input[name="flour1_pct"]').val(0);
+        text1Value =0; 
         }
+          
       if(text1Value >=100)
         {
         $('input[name="flour1_pct"]').val(100);
@@ -226,8 +227,9 @@
       var text1Value = parseInt($('input[name="flour1_pct"]').val());
       var text2Value = parseInt($('input[name="flour2_pct"]').val());
   
-      if(isNaN(text2Value))
+      if(isNaN(text2Value) || text2Value === '')
       {
+      $('input[name="flour2_pct"]').val(0);
       text2Value =0;
       }
       var total = text1Value + text2Value;
@@ -257,10 +259,10 @@
       var text4Value = parseInt($('input[name="pf1_flour1_pct"]').val());
 
       var text4Value = $('input[name="pf1_flour1_pct"]').val();
-      if(isNaN(text4Value))
+      if(isNaN(text4Value) || text4Value === '' || text4Value === ' ' || text4Value === undefined)
         {            
-        $('input[name="pf1_flour1_pct"]').val(100);
-        text4Value =100;
+        $('input[name="pf1_flour1_pct"]').val(0);
+        text4Value =0;
         }
       if(text4Value >=100)
         {
@@ -278,8 +280,9 @@
       var text4Value = parseInt($('input[name="pf1_flour1_pct"]').val());
       var text5Value = parseInt($('input[name="pf1_flour2_pct"]').val());
   
-      if(isNaN(text5Value))
+      if(isNaN(text5Value) || text5Value === '')
       {
+      $('input[name="pf1_flour2_pct"]').val(0);
       text5Value =0;
       }
       var total_pf1 = text4Value + text5Value;

@@ -19,7 +19,7 @@
                         <tr>
                             <th colspan="1" style="color:gray"></th>
                             <th colspan="2" style="color:blue;text-align:center">TOTAL FORMULA</th>
-                            <th colspan="2" style="color:brown;text-align:center">PREFERMENT #1 - {{ pf1 }}</th>
+                            <th colspan="2" style="color:brown;text-align:center">{{ pf1 }} PREFERMENT</th>
                             <th colspan="2" style="text-align:center">FINAL MIX</th>
                         </tr>
                         <tr style="background:salmon;text-align:center">
@@ -99,11 +99,10 @@
                         
                         <tr>
                             <th><img src="https://img.icons8.com/ios-glyphs/30/000000/salt-shaker--v1.png"/> Salt</th>
-                            <td style="color:blue">{{ '%0.1f'| format(salt_pct|float) }}% </td>
+                            <td style="color:blue">{{ footnote_salt }} {{ '%0.1f'| format(salt_pct|float) }}% </td>
                             <td style="color:blue">{{ '%0.1f'| format(salt_mass|float) }}</td>
-                            <td colspan="2" style="background:gray"> </td>
-                            <!--<td style="color:brown">{{ pf1_salt_pct }}%</td>
-                            <td style="color:brown">{{ '%0.1f'| format(pf1_salt_mass|float) }} </td> -->
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_salt_pct|float) }}%</td>
+                            <td style="color:brown">{{ '%0.1f'| format(pf1_salt_mass|float) }} </td> 
                             <td style="color:black;text-align:left">Salt</td>
                             <td style="color:black">{{ '%0.1f'| format(final_salt_mass|float)  }}</td>
                         </tr>
@@ -133,11 +132,11 @@
                           <td style="color:brown"> {{ '%0.1f'| format(pf1_seed_mass|float) }}</td>
                           <td colspan="2" style="background:gray"> </td>
                         </tr>
-                         <tr>
-                            <th><img src="https://img.icons8.com/material-sharp/24/000000/mason-jar.png"/> {{ pf1 }}</th>
-                            <td colspan="4" style="background:gray"> </td>
-                            <td style="color:black;text-align:left">{{ pf1 }} </td>
-                            <td style="color:black">{{ '%0.1f'| format(pf1_mass|float)  }}</td>
+                        <tr>
+                          <th><img src="https://img.icons8.com/material-sharp/24/000000/mason-jar.png"/> Preferment </th>
+                          <td colspan="4" style="background:gray"> </td>
+                          <td style="color:black;text-align:left">Preferment</td>
+                          <td style="color:black">{{ '%0.1f'| format(pf1_mass|float)  }}</td>
                         </tr>
                     </tbody>
                     <tfoot>
@@ -154,6 +153,7 @@
                 </table>
                 <p style="color:blue">
                 {{ footnote_flour_text }}
+                <br>{{ footnote_salt_text }}  
                 <br>{{ footnote_yeast_text }}    
                 </p>
                 </div>

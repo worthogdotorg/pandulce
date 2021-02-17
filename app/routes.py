@@ -37,7 +37,7 @@ def index():
         session['pf1_water_pct'] = request.form["pf1_water_pct"]
         # But seed % is actually as a percentage in the total formula, which will be calculated below
         session['pf1_seed_pct'] = request.form["pf1_seed_pct"]
-        #session['pf1_salt_pct'] = request.form["pf1_salt_pct"]
+        session['pf1_salt_pct'] = request.form["pf1_salt_pct"]
         session['pf1_yeast_pct'] = request.form["pf1_yeast_pct"]
         session['pf1_flour1_type'] = request.form["pf1_flour1_type"]
         session['pf1_flour2_type'] = request.form["pf1_flour2_type"]
@@ -177,39 +177,48 @@ def bbga1table():
         # Yeast, first calculate pf1 yeast as a percentage of total
         bbga1dict['pf1_yeast_pct'] = pf1_yeast_pct = float(session['pf1_yeast_pct'])
         
-        # Round this?
         pf1_yeast_compare = pf1_yeast_pct * pf1_pff_pct / 100
         if pf1_yeast_compare > bbga1dict['yeast_pct']:
             bbga1dict['yeast_pct'] = yeast_pct = pf1_yeast_compare
             bbga1dict['footnote_yeast'] = "**"
             bbga1dict['footnote_yeast_text'] = "** Yeast total percentage recalculated to accommodate yeast in preferment."
+
+        # Yeast, first calculate pf1 yeast as a percentage of total
+        bbga1dict['pf1_salt_pct'] = pf1_salt_pct = float(session['pf1_salt_pct'])
+        
+        pf1_salt_compare = pf1_salt_pct * pf1_pff_pct / 100
+        if pf1_salt_compare > bbga1dict['salt_pct']:
+            bbga1dict['salt_pct'] = salt_pct = pf1_salt_compare
+            bbga1dict['footnote_salt'] = "&&"
+            bbga1dict['footnote_salt_text'] = "&& Salt total percentage recalculated to accommodate salt in preferment."
     
         bbga1dict['total_formula_pct'] = total_formula_pct = 100 + water_pct + salt_pct + yeast_pct + addin_pct + total_seed_pct
         bbga1dict['flour_mass'] = flour_mass = int(tdw) / total_formula_pct * 100
         
         # Recalculate everything after changing flour mass
+        bbga1dict['water_mass'] = water_mass = themath.ingredient_mass(water_pct,flour_mass)
         bbga1dict['salt_mass'] = salt_mass = themath.ingredient_mass(salt_pct,flour_mass)
         bbga1dict['yeast_mass'] = yeast_mass = themath.ingredient_mass(yeast_pct,flour_mass)
         bbga1dict['addin_mass'] = addin_mass = themath.ingredient_mass(addin_pct,flour_mass)
 
         bbga1dict['pf1_flour_mass'] = pf1_flour_mass = themath.ingredient_mass(pf1_pff_pct, flour_mass)
-        bbga1dict['pf1_yeast_mass'] = pf1_yeast_mass = pf1_yeast_pct * pf1_flour_mass / 100
-        bbga1dict['yeast_mass'] = bbga1dict['yeast_pct'] * flour_mass / 100
-        bbga1dict['final_yeast_mass'] = round(bbga1dict['yeast_mass'] - bbga1dict['pf1_yeast_mass'],1)
-    
-  
-        bbga1dict['water_mass'] = water_mass = themath.ingredient_mass(water_pct,flour_mass)
         bbga1dict['pf1_water_mass'] = pf1_water_mass = themath.ingredient_mass(pf1_water_pct, pf1_flour_mass)
         if bbga1dict['water_mass'] < bbga1dict['pf1_water_mass']:
             flash("Preferment water mass too high to maintain dough hydration level.  Starting over.")
             return redirect('/index')
         else:
             bbga1dict['final_water_mass'] = round(bbga1dict['water_mass'] - bbga1dict['pf1_water_mass'],1)
+        bbga1dict['pf1_salt_mass'] = pf1_salt_mass = themath.ingredient_mass(pf1_salt_pct,pf1_flour_mass)
+        bbga1dict['pf1_yeast_mass'] = pf1_yeast_mass = themath.ingredient_mass(pf1_yeast_pct, pf1_flour_mass)
+
+        
+        
         bbga1dict['pf1_seed_mass'] = pf1_seed_mass = themath.ingredient_mass(pf1_seed_pct, pf1_flour_mass)
-        bbga1dict['pf1_mass'] = pf1_flour_mass + pf1_water_mass + pf1_seed_mass + pf1_yeast_mass
-        bbga1dict['pf1_formula_pct'] = 100 + pf1_water_pct + pf1_yeast_pct + pf1_seed_pct
-        bbga1dict['final_salt_mass'] = bbga1dict['salt_mass'] 
-        bbga1dict['final_yeast_mass'] = round(bbga1dict['yeast_mass'] - bbga1dict['pf1_yeast_mass'],1)
+        bbga1dict['pf1_mass'] = pf1_flour_mass + pf1_water_mass + pf1_salt_mass + pf1_yeast_mass + pf1_seed_mass
+        bbga1dict['pf1_formula_pct'] = 100 + pf1_water_pct + pf1_salt_pct + pf1_yeast_pct + pf1_seed_pct
+        # Adding 0 to following two calcs so that total does not show as "-0.0"
+        bbga1dict['final_salt_mass'] = round(bbga1dict['salt_mass'] - bbga1dict['pf1_salt_mass'] + 0,1)
+        bbga1dict['final_yeast_mass'] = round(bbga1dict['yeast_mass'] - bbga1dict['pf1_yeast_mass'] + 0,1)
 
         totals_section_prefix = 'pf1_'
         flour1_type = (session['pf1_flour1_type'])
@@ -229,68 +238,70 @@ def bbga1table():
             
             calculated_pct = bbga1dict[fType + "_pct"] - ((bbga1dict["pf1_" + fType + "_pct"] * bbga1dict['pf1_pff_pct']) / 100)
             
-            adjust_flag = False
+            #adjust_flag = False
             
             if calculated_pct < 0:
                 flourvalues_dict[fType + "_pct"] = bbga1dict[fType + "_pct"] + abs(calculated_pct)
                 flourvalues_dict["footnote_" + fType] = "##"
                 flourvalues_dict["footnote_flour_text"] = "## Total formula flour percentage recalculated to accommodate flour in preferment." 
                 flourvalues_dict['cum_neg'] = abs(calculated_pct)
-                adjust_flag = True
+                #adjust_flag = True
+            elif calculated_pct == 0:
+                flourvalues_dict[fType + "_pct"] = bbga1dict[fType + "_pct"]
+                flourvalues_dict["footnote_" + fType] = "xx"
+                flourvalues_dict['cum_pos'] = 0
+                #adjust_flag = True
             else:            
                 flourvalues_dict["footnote_" + fType] = ""
-                flourvalues_dict[fType + "_pct"] = bbga1dict[fType + "_pct"]
-            
-
+                flourvalues_dict[fType + "_pct"] = flourvalues_dict['cum_pos'] = bbga1dict[fType + "_pct"]
 
             flourvalues_dict[fType + "_mass"] = themath.ingredient_mass(flourvalues_dict[fType + "_pct"], bbga1dict['flour_mass']) 
             flourvalues_dict["final_" + fType + "_mass"] = flourvalues_dict[fType + "_mass"] - bbga1dict["pf1_" + fType + "_mass"]
                 
-            flourvalues_dict['adjust_flag'] = adjust_flag
+            #flourvalues_dict['adjust_flag'] = adjust_flag
 
             return(flourvalues_dict)
 
         def recalc_totals_again (fType):
             flourvalues_dict2 = {}
-            if bbga1dict[fType + "_pct"] != 0:
-                if bbga1dict["footnote_" + fType] != "##":
-                    flourvalues_dict2["footnote_" + fType] = "##"
-                    flourvalues_dict2[fType + "_pct"] = bbga1dict[fType + "_pct"] - (bbga1dict[fType + "_pct"] * bbga1dict['cum_neg']/100)
-                    flourvalues_dict2[fType + "_mass"] = themath.ingredient_mass(flourvalues_dict2[fType + "_pct"], bbga1dict['flour_mass']) 
-                    flourvalues_dict2["final_" + fType + "_mass"] =round(flourvalues_dict2[fType + "_mass"] - bbga1dict["pf1_" + fType + "_mass"],1)
+            if bbga1dict["footnote_" + fType] == "xx":
+                flourvalues_dict2["footnote_" + fType] = ""
+            elif bbga1dict[fType + "_pct"] != 0 and bbga1dict["footnote_" + fType] != "##":
+                flourvalues_dict2["footnote_" + fType] = "##"
+                flourvalues_dict2[fType + "_pct"] = bbga1dict[fType + "_pct"] - (bbga1dict[fType + "_pct"]/bbga1dict['cum_pos'] * bbga1dict['cum_neg'])
+                flourvalues_dict2[fType + "_mass"] = themath.ingredient_mass(flourvalues_dict2[fType + "_pct"], bbga1dict['flour_mass']) 
+                flourvalues_dict2["final_" + fType + "_mass"] =round(flourvalues_dict2[fType + "_mass"] - bbga1dict["pf1_" + fType + "_mass"],1)
             return(flourvalues_dict2)
-
-        #def cum_minus_generator(minus):
-        #    cum_minus = 0
-        #    cum_minus += minus
-        #    yield cum_minus
 
 
         floursList = ("apf", "bread", "ww", "rye", "other")
-        adjust_flag = False
+        #adjust_flag = False
         
         cum_neg = 0
-        #cum_neg_accumulator = cum_minus_generator(cum_neg)
+        cum_pos = 0
+
         for flours in floursList:
             flourvalues_dict = recalc_totals(flours)
             
-            if flourvalues_dict['adjust_flag']:
+            #if flourvalues_dict['adjust_flag']:
                 
-                if flourvalues_dict["footnote_" + flours] == "##":
-                    #flash("cum_neg_accumulator, line 289")
-                    adjust_flag = True   
-                    cum_neg += flourvalues_dict['cum_neg']
+            if flourvalues_dict["footnote_" + flours] == "##":
+                #adjust_flag = True   
+                cum_neg += flourvalues_dict['cum_neg']
+            else:
+                cum_pos += flourvalues_dict['cum_pos']
                     
 
             bbga1dict.update(flourvalues_dict)
 
         bbga1dict['cum_neg'] = cum_neg    
+        bbga1dict['cum_pos'] = cum_pos
             
-        if adjust_flag:
+        #if adjust_flag:
             #flash("Adjust flag true ")
-            for flours in floursList:
-                flourvalues_dict2 = recalc_totals_again(flours)
-                bbga1dict.update(flourvalues_dict2)
+        for flours in floursList:
+            flourvalues_dict2 = recalc_totals_again(flours)
+            bbga1dict.update(flourvalues_dict2)
         
         return render_template('bbga1table.html', **bbga1dict)  
 
