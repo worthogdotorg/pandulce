@@ -266,6 +266,8 @@ def bbga1table():
             flourvalues_dict2 = {}
             if bbga1dict["footnote_" + fType] == "xx":
                 flourvalues_dict2["footnote_" + fType] = ""
+            elif bbga1dict[fType + "_pct"] == bbga1dict["pf1_" + fType + "_pct"]:
+                flourvalues_dict2["footnote_" + fType] = ""
             elif bbga1dict[fType + "_pct"] != 0 and bbga1dict["footnote_" + fType] != "##":
                 flourvalues_dict2["footnote_" + fType] = "##"
                 flourvalues_dict2[fType + "_pct"] = bbga1dict[fType + "_pct"] - (bbga1dict[fType + "_pct"]/bbga1dict['cum_pos'] * bbga1dict['cum_neg'])
