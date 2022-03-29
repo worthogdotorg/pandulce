@@ -11,13 +11,13 @@ Like many, I've been finding creative ways to use sourdough discard which is saf
 
 But when replacing flour and water with sourdough discard it's important to maintain bakers percentages. Otherwise you may end up baking a brick or something resembling a stiff, hot porridge. This simple calculator will compute the amount of flour and water required to maintain the original recipe bakers percentages when replacing some portion of the dough with sourdough discard.
 
-My primary objective with the calculator--beyond accuracy and a clean interface--is simplicity. Two screens, that's it! For more information on how to use the calculator, give it a test ride and click Help in the navigation bar.
+My primary objective with the calculator--beyond accuracy and a clean interface--is simplicity. For more information on how to use the calculator, give it a test ride and click Help in the navigation bar.
 
 # Usage
 
 My primary objective with the calculators--beyond accuracy and a clean interface--is simplicity. 
 
-For more information on how to use the calculator, give it a test ride at www.pandulce.info and click Help in the navigation bar.
+For more information on how to use the calculator, give it a test ride at pandulce.worthog.org and click Help in the navigation bar.
 
 # Roadmap
 
@@ -59,8 +59,6 @@ This article is very has a simple explanation for bakers who are just starting t
 
 Icons and glyphs make the user experience a little more pleasant, IMHO. The images I used are courtesy of [icons8](https://icons8.com/).
 
-I could not have deployed this on an AWS EC2 instance without [this very well written blog post on Twilio](https://www.twilio.com/blog/deploy-flask-python-app-aws). 
-
 For this calculator, simplicity was paramount even if the algebra required was sometimes not so simple (at least for me)! Somewhat embarrassingly, I could not have figured out the math without the help of [this terrific site](https://munchietamer.com/bread-math-sourdough-starter-and-dough-hydration/) which provided the needed formulas and helpful explanations. Hey, it's been awhile since I've done high school algebra. 
 
 ![Too Old For This Shit](https://imgs.xkcd.com/comics/too_old_for_this_shit.png)
@@ -71,11 +69,10 @@ Gracias. Huzzahs!
 
 # About Me
 
-I'm a long time home baker and have been maintaining starters since long before the pandemic struck. I'm also a little geeky and have some time on my hands (and sometimes bits of freshly kneaded dough). I'm sort of semi-retired, but hoping to somehow leverage my nascent programming skills and many years of enterprise data center experience into something interesting with an organization doing good things for all of us.
+I'm a long time home baker and have been maintaining starters since long before the pandemic struck. I'm also a little geeky and have some time on my hands (and sometimes bits of freshly kneaded dough). 
 
 Contact information:
 
-*   [stuff@worthog.org](mailto:stuff[at]worthog.org)
-
+*   [stuff@worthog.org](mailto:stuff@worthog.org)
 
 Paraphrasing [the great Papazian](https://www.brewerspublications.com/blogs/author/charlie-papazian), "Relax, don't worry, and have another slice of buttered bread." Happy Baking!
