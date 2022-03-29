@@ -75,7 +75,7 @@ I'm a long time home baker and have been maintaining starters since long before 
 
 Contact information:
 
-*   [info@pandulce.info](mailto:stuff[at]worthog.org)
-*   [LinkedIn](www.linkedin.com/in/frank-a-espinoza)
+*   [stuff@worthog.org](mailto:stuff[at]worthog.org)
+
 
 Paraphrasing [the great Papazian](https://www.brewerspublications.com/blogs/author/charlie-papazian), "Relax, don't worry, and have another slice of buttered bread." Happy Baking!
